@@ -5,7 +5,14 @@ export default function Layout({ children }: { children: JSX.Element[] }) {
   return (
     <div>
       <div class="flex items-stretch">
-        <h1 class={`text-5xl ${"font-glitch"} flex-1`}>{siteName}</h1>
+        <h1
+          class={`text-5xl ${"font-glitch"} flex-1
+          transition-[1s]
+          hover:text-yellow-400
+        `}
+        >
+          <a href="/">{siteName}</a>
+        </h1>
         <nav class={`max-w-screen-xl`}>
           <ul class="flex content-center">
             <NavButton href="/" text="Home" />
@@ -25,7 +32,7 @@ function NavButton({ href, text }: { href: string; text: string }) {
       class={`text-3xl p-3 mx-2 rounded-2xl
       ${"font-glitch"}
       transition-[1s]
-      text-gray-600 hover:text-black
+      text-gray-600 hover:text-[#CC513C]
       bg-[#73F452] hover:bg-[#F6E84F]
       `}
     >

@@ -9,6 +9,8 @@ export const handler: Handlers<Post[]> = {
   },
 };
 
+const flareRed = "#F6E84F";
+
 export default function BlogIndexPage(props: PageProps<Post[]>) {
   const posts = props.data;
   return (
@@ -25,17 +27,20 @@ export default function BlogIndexPage(props: PageProps<Post[]>) {
 
 function PostCard({ post }: { post: Post }) {
   return (
-    <div class="py-8 border(t gray-200)">
-      <a class="sm:col-span-2" href={`/blog/${post.slug}`}>
-        <h3 class={`text(3xl gray-900) font-bold`}>{post.title}</h3>
-        <time class="text-gray-500">
+    <div class="py-8 border(t gray-200) border-b-1">
+      <a
+        class="sm:col-span-2 transition duration-150 hover:text-red-400"
+        href={`/blog/${post.slug}`}
+      >
+        <h3 class={`text(3xl) font-mono font-bold`}>{post.title}</h3>
+        <time>
           {new Date(post.published_at).toLocaleDateString("ja", {
             year: "numeric",
             month: "short",
             day: "numeric",
           })}
         </time>
-        <div class="mt-4 text-gray-900">{post.snippet}</div>
+        <div class="mt-4 text-gray-300">{post.snippet}</div>
       </a>
     </div>
   );
