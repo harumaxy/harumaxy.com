@@ -2,6 +2,7 @@ import { Handlers, PageProps } from "$fresh/server.ts";
 import { Head } from "$fresh/runtime.ts";
 import { getPost, Post } from "@/utils/posts.ts";
 import { render, CSS } from "$gfm";
+import "@/utils/highlights.ts";
 
 export const handler: Handlers<Post> = {
   GET: async (req, ctx) => {
