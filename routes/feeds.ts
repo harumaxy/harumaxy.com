@@ -27,8 +27,8 @@ export const handler: Handlers<Post[]> = {
         description: p.snippet,
         link: `${origin}/blog/${p.slug}`,
         copyright,
-        published: p.publishedAt,
-        date: p.publishedAt,
+        published: p.published_at,
+        date: p.published_at,
       };
       feed.addItem(item);
     });
