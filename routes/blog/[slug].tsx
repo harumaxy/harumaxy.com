@@ -3,6 +3,7 @@ import { Head } from "$fresh/runtime.ts";
 import { getPost, Post } from "@/utils/posts.ts";
 import { render, CSS } from "$gfm";
 import "@/utils/highlights.ts";
+import Layout from "../../components/Layout.tsx";
 
 export const handler: Handlers<Post> = {
   GET: async (req, ctx) => {
@@ -17,14 +18,15 @@ export const handler: Handlers<Post> = {
 
 export default function PostPage(props: PageProps<Post>) {
   const { data: post } = props;
+
   return (
     <>
       <Head>
         <style dangerouslySetInnerHTML={{ __html: CSS }} />
       </Head>
-      <main class="max-w-screen-md px-4 pt-16 mx-auto">
+      <Layout>
         <h1 class="text-5xl font-bold">{post.title}</h1>
-        <time class="text-gray-500">
+        <time>
           {new Date(post.published_at).toLocaleDateString("ja", {
             year: "numeric",
             month: "numeric",
@@ -32,12 +34,12 @@ export default function PostPage(props: PageProps<Post>) {
           })}
         </time>
         <div
-          class={`mt-8 ${markdown_body}`}
-          dangerouslySetInnerHTML={{ __html: render(post.content) }}
+          class={`mt-8 p-12 rounded-3xl bg-blue-600 ${"markdown-body"}`}
+          dangerouslySetInnerHTML={{
+            __html: render(post.content),
+          }}
         ></div>
-      </main>
+      </Layout>
     </>
   );
 }
-// avoid twind error
-const markdown_body = "markdown-body";
