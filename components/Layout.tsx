@@ -26,6 +26,7 @@ export default function Layout({
             <NavButton href="/" text="Home" />
             <NavButton href="/about" text="About" />
             <NavButton href="/blog" text="Blog" />
+            <NavButton href="/tags" text="Tags" />
           </ul>
         </nav>
       </div>

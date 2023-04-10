@@ -5,23 +5,27 @@
 import config from "./deno.json" assert { type: "json" };
 import * as $0 from "./routes/_404.tsx";
 import * as $1 from "./routes/_app.tsx";
-import * as $2 from "./routes/api/joke.ts";
-import * as $3 from "./routes/blog.tsx";
+import * as $2 from "./routes/about.tsx";
+import * as $3 from "./routes/api/joke.ts";
 import * as $4 from "./routes/blog/[slug].tsx";
-import * as $5 from "./routes/feeds.ts";
-import * as $6 from "./routes/index.tsx";
-import * as $7 from "./routes/tags/[tag].tsx";
+import * as $5 from "./routes/blog/index.tsx";
+import * as $6 from "./routes/feeds.ts";
+import * as $7 from "./routes/index.tsx";
+import * as $8 from "./routes/tags/[tag].tsx";
+import * as $9 from "./routes/tags/index.tsx";
 
 const manifest = {
   routes: {
     "./routes/_404.tsx": $0,
     "./routes/_app.tsx": $1,
-    "./routes/api/joke.ts": $2,
-    "./routes/blog.tsx": $3,
+    "./routes/about.tsx": $2,
+    "./routes/api/joke.ts": $3,
     "./routes/blog/[slug].tsx": $4,
-    "./routes/feeds.ts": $5,
-    "./routes/index.tsx": $6,
-    "./routes/tags/[tag].tsx": $7,
+    "./routes/blog/index.tsx": $5,
+    "./routes/feeds.ts": $6,
+    "./routes/index.tsx": $7,
+    "./routes/tags/[tag].tsx": $8,
+    "./routes/tags/index.tsx": $9,
   },
   islands: {},
   baseUrl: import.meta.url,
