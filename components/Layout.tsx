@@ -11,7 +11,7 @@ export default function Layout({
       <div class="flex flex-col sm:flex-row">
         <h1
           class={`text-5xl ${"font-glitch"} flex-1
-          transition-[1s]
+          duration-300
           hover:text-yellow-400
           pb-6
           sm:text-left
@@ -39,7 +39,7 @@ function NavButton({ href, text }: { href: string; text: string }) {
       class={`text-xl p-3 mx-1 rounded-2xl
       sm:text-3xl
       ${"font-glitch"}
-      transition-[1s]
+      duration-300
       text-gray-600 hover:text-[#CC513C]
       bg-[#73F452] hover:bg-[#F6E84F]
       `}
