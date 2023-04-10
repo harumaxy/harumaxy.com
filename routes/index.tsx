@@ -21,7 +21,9 @@ export default function Home() {
   return (
     <div class={`${centerContainer}`}>
       <div>
-        <h1 class="text-5xl font-bold pb-32">Wellcome My HomePage</h1>
+        <h1 class="text-5xl font-bold pb-32 text-center">
+          Wellcome My HomePage
+        </h1>
         <ul class="flex flex-row justify-around items-center">
           {homeLinks.map((link) => (
             <HomeLink {...link} />

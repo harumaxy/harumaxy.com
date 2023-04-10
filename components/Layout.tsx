@@ -10,7 +10,7 @@ export default function Layout({
     <div>
       <div class="flex flex-col sm:flex-row">
         <h1
-          class={`text-5xl ${"font-glitch"} flex-1
+          class={`text-5xl ${"font-glitch"}
           duration-300
           hover:text-yellow-400
           pb-6
@@ -20,6 +20,7 @@ export default function Layout({
         >
           <a href="/">{siteName}</a>
         </h1>
+        <div class="flex-auto" />
         <nav class={``}>
           <ul class="flex items-center justify-end mx-auto">
             <NavButton href="/" text="Home" />
