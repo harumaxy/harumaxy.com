@@ -1,7 +1,11 @@
 import { JSX } from "preact";
 import { siteName } from "../utils/site.ts";
 
-export default function Layout({ children }: { children: JSX.Element[] }) {
+export default function Layout({
+  children,
+}: {
+  children: JSX.Element | JSX.Element[];
+}) {
   return (
     <div>
       <div class="flex items-stretch">
@@ -17,7 +21,7 @@ export default function Layout({ children }: { children: JSX.Element[] }) {
           <ul class="flex content-center">
             <NavButton href="/" text="Home" />
             <NavButton href="/about" text="About" />
-            <NavButton href="/" text="Blog" />
+            <NavButton href="/blog" text="Blog" />
           </ul>
         </nav>
       </div>

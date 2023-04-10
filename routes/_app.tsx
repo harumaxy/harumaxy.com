@@ -1,5 +1,6 @@
 import { asset, Head } from "$fresh/runtime.ts";
 import { AppProps } from "$fresh/src/server/types.ts";
+import Layout from "../components/Layout.tsx";
 
 export default function App({ Component }: AppProps) {
   return (
@@ -18,9 +19,11 @@ export default function App({ Component }: AppProps) {
         />
       </Head>
       <body
-        class={`p-6 text-gray-100 min-h-screen bg-gradient-to-b from-[#294E5F] to-[#A1E765]`}
+        class={`p-6 text-gray-200 min-h-screen bg-gradient-to-b from-[#294E5F] to-[#A1E765]`}
       >
-        <Component />
+        <Layout>
+          <Component />
+        </Layout>
       </body>
     </html>
   );
