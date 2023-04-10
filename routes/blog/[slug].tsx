@@ -22,7 +22,7 @@ export default function PostPage(props: PageProps<Post>) {
   return (
     <>
       <Head>
-        <style dangerouslySetInnerHTML={{ __html: `@apply bg-red; ${CSS}` }} />
+        <style dangerouslySetInnerHTML={{ __html: CSS }} />
       </Head>
 
       <h1 class="text-5xl font-bold">{post.title}</h1>
