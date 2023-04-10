@@ -10,4 +10,14 @@ import manifest from "./fresh.gen.ts";
 import twindPlugin from "$fresh/plugins/twind.ts";
 import twindConfig from "./twind.config.ts";
 
-await start(manifest, { plugins: [twindPlugin(twindConfig)] });
+const resolveImportsJson = (manifest: any) => ({
+  ...manifest,
+  config: {
+    ...manifest.config,
+    importMap: "./deno.json",
+  },
+});
+
+await start(resolveImportsJson(manifest), {
+  plugins: [twindPlugin(twindConfig)],
+});
