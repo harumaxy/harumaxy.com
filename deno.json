@@ -6,6 +6,7 @@
     "jsx": "react-jsx",
     "jsxImportSource": "preact"
   },
+  "importMap": "",
   "imports": {
     "$fresh/": "https://deno.land/x/fresh@1.1.0/",
     "preact": "https://esm.sh/preact@10.10.6",
