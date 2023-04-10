@@ -35,9 +35,7 @@ export default function PostPage(props: PageProps<Post>) {
       <div
         // data-color-mode="dark"
         // data-dark-theme="dark"
-        class={`mt-8 p-12 rounded-3xl ${"markdown-body"}`}
-        style={`
-          `}
+        class={`mt-8 p-6 sm:p-12 rounded-3xl ${"markdown-body"}`}
         dangerouslySetInnerHTML={{
           __html: render(post.content),
         }}

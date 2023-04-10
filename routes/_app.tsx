@@ -19,7 +19,7 @@ export default function App({ Component }: AppProps) {
         />
       </Head>
       <body
-        class={`p-6 text-gray-200 min-h-screen bg-gradient-to-b from-[#294E5F] to-[#A1E765]`}
+        class={`p-3 sm:p-6 text-gray-200 min-h-screen bg-gradient-to-b from-[#294E5F] to-[#A1E765]`}
       >
         <Layout>
           <Component />

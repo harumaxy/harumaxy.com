@@ -8,24 +8,27 @@ export default function Layout({
 }) {
   return (
     <div>
-      <div class="flex items-stretch">
+      <div class="flex flex-col sm:flex-row">
         <h1
           class={`text-5xl ${"font-glitch"} flex-1
           transition-[1s]
           hover:text-yellow-400
+          pb-6
+          sm:text-left
+          text-center
         `}
         >
           <a href="/">{siteName}</a>
         </h1>
-        <nav class={`max-w-screen-xl`}>
-          <ul class="flex content-center">
+        <nav class={``}>
+          <ul class="flex items-center justify-end mx-auto">
             <NavButton href="/" text="Home" />
             <NavButton href="/about" text="About" />
             <NavButton href="/blog" text="Blog" />
           </ul>
         </nav>
       </div>
-      <main class="max-w-screen-xl px-4 pt-16 mx-auto">{children}</main>
+      <main class="max-w-screen-xl sm:px-4 pt-16 mx-auto">{children}</main>
     </div>
   );
 }
@@ -33,7 +36,8 @@ export default function Layout({
 function NavButton({ href, text }: { href: string; text: string }) {
   return (
     <li
-      class={`text-3xl p-3 mx-2 rounded-2xl
+      class={`text-xl p-3 mx-1 rounded-2xl
+      sm:text-3xl
       ${"font-glitch"}
       transition-[1s]
       text-gray-600 hover:text-[#CC513C]
