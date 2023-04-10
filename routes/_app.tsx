@@ -1,12 +1,13 @@
 import { asset, Head } from "$fresh/runtime.ts";
 import { AppProps } from "$fresh/src/server/types.ts";
 import Layout from "../components/Layout.tsx";
+import { siteName } from "../utils/site.ts";
 
 export default function App({ Component }: AppProps) {
   return (
     <html data-custom="data">
       <Head>
-        <title>Fresh</title>
+        <title>{siteName}</title>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
           rel="preconnect"
