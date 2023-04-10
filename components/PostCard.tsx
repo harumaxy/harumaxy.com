@@ -3,9 +3,13 @@ import Tag from "./Tag.tsx";
 
 export default function PostCard({ post }: { post: Post }) {
   return (
-    <div class="py-8 border(t gray-200) border-b-1 flex flex-col sm:flex-row">
+    <div
+      class="py-8 border(t gray-200) border-b-1 flex flex-col sm:flex-row
+    items-center justify-center"
+    >
       <a
-        class="text-center sm:col-span-2 transition duration-150 hover:text-yellow-400"
+        class="text-center sm:text-left 
+        transition duration-150 hover:text-yellow-400"
         href={`/blog/${post.slug}`}
       >
         <h3 class={`text(3xl) font-mono font-bold`}>{post.title}</h3>
@@ -17,7 +21,8 @@ export default function PostCard({ post }: { post: Post }) {
           })}
         </time>
       </a>
-      <div class="sm:flex-1 text-center">
+      <div class="flex-1" />
+      <div class="sm:flex-1 text-center sm:text-right">
         <div class="mt-4 text-gray-300 pb-2">{post.snippet}</div>
         {post.tags.map((tag) => (
           <Tag tag={tag} />

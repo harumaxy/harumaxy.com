@@ -3,6 +3,7 @@ import { Head } from "$fresh/runtime.ts";
 import { getPost, Post } from "@/utils/posts.ts";
 import { render, CSS } from "$gfm";
 import "@/utils/highlights.ts";
+import Tag from "../../components/Tag.tsx";
 
 export const handler: Handlers<Post> = {
   GET: async (req, ctx) => {
@@ -32,12 +33,19 @@ export default function PostPage(props: PageProps<Post>) {
           day: "numeric",
         })}
       </time>
+      <div class="py-6">
+        {post.tags.map((tag) => (
+          <Tag tag={tag} key={tag} />
+        ))}
+      </div>
       <div
         // data-color-mode="dark"
         // data-dark-theme="dark"
         class={`mt-8 p-6 sm:p-12 rounded-3xl ${"markdown-body"}`}
         dangerouslySetInnerHTML={{
-          __html: render(post.content),
+          __html: render(post.content, {
+            allowIframes: true,
+          }),
         }}
       ></div>
     </>
