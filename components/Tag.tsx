@@ -3,10 +3,14 @@ type TagProps = {
 };
 export default function Tag({ tag }: TagProps) {
   return (
-    <span class="text-lg bg-gradient-to-bl from-green-700 to-blue-600 font-medium py-2 px-4 rounded-full hover:bg-gray-300 focus:outline-none focus:ring-2">
+    <span
+      class="mx-1 text-lg
+      bg-yellow-500
+      hover:bg-red-500
+      duration-300
+      py-2 px-4 rounded-full focus:outline-none focus:ring-2"
+    >
       <a href={`/tags/${tag}`}>{tag}</a>
     </span>
   );
 }
-
-// tailwind css でカプセル型のおしゃれなタグボタンのコードを書いてください

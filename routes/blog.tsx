@@ -1,6 +1,5 @@
 import { Handlers, PageProps } from "$fresh/server.ts";
 import { getPost, getPosts, Post } from "@/utils/posts.ts";
-import Tag from "../components/Tag.tsx";
 import PostCard from "../components/PostCard.tsx";
 
 export const handler: Handlers<Post[]> = {
