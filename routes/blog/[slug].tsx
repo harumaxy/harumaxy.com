@@ -4,6 +4,7 @@ import { getPost, Post } from "@/utils/posts.ts";
 import { render, CSS } from "$gfm";
 import "@/utils/highlights.ts";
 import Layout from "../../components/Layout.tsx";
+import { Style } from "https://esm.sh/v114/domelementtype@2.3.0/lib/index.js";
 
 export const handler: Handlers<Post> = {
   GET: async (req, ctx) => {
@@ -22,7 +23,7 @@ export default function PostPage(props: PageProps<Post>) {
   return (
     <>
       <Head>
-        <style dangerouslySetInnerHTML={{ __html: CSS }} />
+        <style dangerouslySetInnerHTML={{ __html: `@apply bg-red; ${CSS}` }} />
       </Head>
       <Layout>
         <h1 class="text-5xl font-bold">{post.title}</h1>
@@ -34,7 +35,11 @@ export default function PostPage(props: PageProps<Post>) {
           })}
         </time>
         <div
-          class={`mt-8 p-12 rounded-3xl bg-blue-600 ${"markdown-body"}`}
+          // data-color-mode="dark"
+          // data-dark-theme="dark"
+          class={`mt-8 p-12 rounded-3xl ${"markdown-body"}`}
+          style={`
+          `}
           dangerouslySetInnerHTML={{
             __html: render(post.content),
           }}
