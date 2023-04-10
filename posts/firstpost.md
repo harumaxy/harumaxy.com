@@ -2,6 +2,7 @@
 title: 最初の投稿
 published_at: "2022-11-04T15:00:00.000Z"
 snippet: This is an excerpt of my first blog post.
+tags: ["blog", "first"]
 ---
 
 

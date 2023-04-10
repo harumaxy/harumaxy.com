@@ -36,16 +36,18 @@ export default function Layout({
 
 function NavButton({ href, text }: { href: string; text: string }) {
   return (
-    <li
-      class={`text-xl p-3 mx-1 rounded-2xl
+    <a href={href}>
+      <li
+        class={`text-xl p-3 mx-1 rounded-2xl
       sm:text-3xl
       ${"font-glitch"}
       duration-300
       text-gray-600 hover:text-[#CC513C]
       bg-[#73F452] hover:bg-[#F6E84F]
       `}
-    >
-      <a href={href}>{text}</a>
-    </li>
+      >
+        {text}
+      </li>
+    </a>
   );
 }
