@@ -11,6 +11,7 @@ const PostSchema = z.object({
   published_at: z.string().transform((d) => new Date(d)),
   snippet: z.string(),
   content: z.string(),
+  tags: z.array(z.string()),
 });
 
 export type Post = z.infer<typeof PostSchema>;
