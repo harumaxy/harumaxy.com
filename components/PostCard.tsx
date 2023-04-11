@@ -1,4 +1,5 @@
 import { Post } from "../utils/posts.ts";
+import { titleTextSize } from "../utils/titleTextSize.ts";
 import Tag from "./Tag.tsx";
 
 export default function PostCard({ post }: { post: Post }) {
@@ -12,7 +13,9 @@ export default function PostCard({ post }: { post: Post }) {
         transition duration-150 hover:text-yellow-400"
         href={`/blog/${post.slug}`}
       >
-        <h3 class={`text(3xl) font-mono font-bold`}>{post.title}</h3>
+        <h3 class={`${titleTextSize(post.title, true)} font-mono font-bold`}>
+          {post.title}
+        </h3>
         <time>
           {new Date(post.published_at).toLocaleDateString("ja", {
             year: "numeric",

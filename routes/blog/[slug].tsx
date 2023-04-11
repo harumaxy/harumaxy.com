@@ -4,6 +4,7 @@ import { getPost, Post } from "@/utils/posts.ts";
 import { render, CSS } from "$gfm";
 import "@/utils/highlights.ts";
 import Tag from "../../components/Tag.tsx";
+import { titleTextSize } from "../../utils/titleTextSize.ts";
 
 export const handler: Handlers<Post> = {
   GET: async (req, ctx) => {
@@ -25,7 +26,7 @@ export default function PostPage(props: PageProps<Post>) {
         <style dangerouslySetInnerHTML={{ __html: CSS }} />
       </Head>
 
-      <h1 class="text-5xl font-bold">{post.title}</h1>
+      <h1 class={`${titleTextSize(post.title)} font-bold`}>{post.title}</h1>
       <time>
         {new Date(post.published_at).toLocaleDateString("ja", {
           year: "numeric",
