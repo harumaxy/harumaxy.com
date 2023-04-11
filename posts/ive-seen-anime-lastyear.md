@@ -5,7 +5,7 @@ snippet: 2022年頃に見たやつ
 tags: ["blog", "anime"]
 ---
 
-# Cyberpunk: Edgerunners
+## Cyberpunk: Edgerunners
 
 <img src="https://cdn-l-cyberpunk.cdprojektred.com/edgerunners/Cyberpunk-Edgerunners-S1-Poster-ja.jpg" width=512 />
 
@@ -20,7 +20,7 @@ tags: ["blog", "anime"]
 
 このホムペの背景のグラデーション、このアニメを参考にしてるのおわかりいただけただろうか...
 
-# チェンソーマン
+## チェンソーマン
 
 <img src="https://chainsawman.dog/assets/img/index/main_img.jpg" width=512/>
 
@@ -28,8 +28,13 @@ tags: ["blog", "anime"]
 
 原作のマンガも元から好きだったので見てた
 
-作画とか雰囲気とか声優はかなり良かった。  
-あと毎話ごとにED変わるの豪華すぎる！
-
-ネットで評判をググると、アニメの演出とかセリフの改変が不評...(まあ一部同感だけど)  
+作画とか雰囲気とか声優はかなり良かった。<br/>
+あと毎話ごとにED変わるの豪華すぎる！<br/>
+ネットで評判をググると、アニメの演出とかセリフの改変が不評...(まあ一部同感だけど)<br/>
 一旦忘れて頭を空にして見よう
+
+2022のアニメは曲がいいヤツが多かったな(ぼっち・ざ・ろっくとかもだけど)
+
+見てないやつも刃渡り2億センチだけは聞け！
+
+<iframe width="700" height="563" src="https://www.youtube.com/embed/HEwAiwttN10" title="『チェンソーマン』第３話ノンクレジットエンディング / CHAINSAW MAN #3 Ending│マキシマム ザ ホルモン 「刃渡り2億センチ」" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
