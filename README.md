@@ -1,11 +1,10 @@
 # fresh project
 
-### Usage
+## Usage
 
-Start the project:
-
+```sh
+# launch dev server on localhost:8000
+deno task dev
 ```
-deno task start
-```
 
-This will watch the project directory and restart as necessary.
+If code is changed, the server will reload page automatically.
