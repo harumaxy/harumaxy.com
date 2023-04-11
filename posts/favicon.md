@@ -5,16 +5,9 @@ snippet: Sample blog post.
 tags: ["blog", "favicon"]
 ---
 
-Chat GPTさん、JavaScript RuntimeのDenoについてどう思いますか？
-
 このサイトは [Deno Deploy](https://deno.com/deploy) でSSRしてるわけだけど、 git lfs で追加した favicon がうまく配信されてなかったらしい。
-
 <https://harumaxy.com/favicon.ico>
 
-> git lfs = Git Large File Storage. 大きいファイルを git で管理するためのツール。
-
-fresh プロジェクトの `static` ディレクトリに入れた静的ファイルはアクセスできるわけですが、 Deno DeployがGitソースをpullするときにLFSオブジェクトはpullされない説。
-
-ということでそのまま `favicon.ico` をgitにcommitしたけど、約34KBあるが大丈夫だろうか...
-
+Deno DeployがGitソースをpullするときにLFSオブジェクトはpullされない説。<br/>
+ということでそのまま `favicon.ico` をgitにcommitしたけど、約34KBあるが大丈夫だろうか...<br/>
 まあfreshプロジェクトを作成した時点で、デフォルトのレモンのfaviconも22KBくらいあったから大丈夫ということにしよう。
