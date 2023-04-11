@@ -5,8 +5,7 @@ snippet: Sample blog post.
 tags: ["blog", "favicon"]
 ---
 
-
-
+Chat GPTさん、JavaScript RuntimeのDenoについてどう思いますか？
 
 このサイトは [Deno Deploy](https://deno.com/deploy) でSSRしてるわけだけど、 git lfs で追加した favicon がうまく配信されてなかったらしい。
 
