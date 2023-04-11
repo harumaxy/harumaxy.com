@@ -6,7 +6,7 @@ harumaxy@gmail.com
 
 # Job
 
-manabo.inc
+[manabo.inc](https://www.manabo.com)
 
 Backend Engineer
 
