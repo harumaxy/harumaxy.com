@@ -21,19 +21,19 @@ export const handler: Handlers<string> = {
 export default function About(props: PageProps<string>) {
   const { data: markdown } = props;
   return (
-    <div class={`${centerContainer}`}>
+    <div class={`flex items-center justify-center sm:(${centerContainer})`}>
       <Head>
         <style dangerouslySetInnerHTML={{ __html: CSS }} />
       </Head>
-      <div class="flex items-center justify-around w-[90%] max-w-[800px] py-16 sm:py-6 rounded-3xl bg-white">
+      <div class="flex flex-col sm:flex-row items-center justify-around w-[90%] max-w-[800px] py-16 sm:py-6 rounded-3xl bg-white">
         <img
-          class="absolute sm:relative bottom-64 sm:bottom-0 w-64 h-64 bg-cover rounded-full"
+          class="sm:relative bottom-16 w-64 h-64 bg-cover rounded-full"
           src="https://avatars.githubusercontent.com/u/15980686?v=4"
         />
         <div
           // data-color-mode="dark"
           // data-dark-theme="dark"
-          class={`rounded-3xl bg-white ${"markdown-body"}`}
+          class={`sm:top-32 rounded-3xl bg-white ${"markdown-body"}`}
           dangerouslySetInnerHTML={{
             __html: render(markdown),
           }}
