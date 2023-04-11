@@ -2,6 +2,7 @@ import { Handlers } from "https://deno.land/x/fresh@1.1.0/src/server/types.ts";
 import { getPosts } from "../../utils/posts.ts";
 import { PageProps } from "https://deno.land/x/fresh@1.1.0/server.ts";
 import { centerContainer } from "../../utils/twind.common.ts";
+import Tag from "../../components/Tag.tsx";
 
 type TagMap = { [tag: string]: number };
 
@@ -30,19 +31,9 @@ export default function TagIndex(props: PageProps<TagMap>) {
   return (
     <div class={`${centerContainer} flex flex-col items-center justify-center`}>
       <h1 class="text-5xl font-bold">Tags</h1>
-      <div class="mt-8">
+      <div class="mt-8 flex-wrap">
         {Object.entries(tagMap).map(([tag, count]) => (
-          <a href={`/tags/${tag}`}>
-            <span
-              class="mx-1 text-lg
-            bg-yellow-500
-            hover:bg-red-500
-            duration-300
-            py-2 px-4 rounded-full focus:outline-none focus:ring-2"
-            >
-              {tag} ({count})
-            </span>
-          </a>
+          <Tag tag={tag} count={count} key={tag} />
         ))}
       </div>
     </div>
