@@ -7,7 +7,7 @@ tags: ["blog", "ai", "chatgpt"]
 
 新しく作ったホムペのブログを会社の人に見せようと思うが、記事が全然ないのでAIに書いてもらおう。
 
-## 　Let's Chat!
+## 　Let's Chat
 
 俺: Chat GPTさん、JavaScript Runtimeの `Deno` についてどう思いますか？
 
@@ -53,11 +53,38 @@ tags: ["blog", "ai", "chatgpt"]
 >
 > ...
 
+```typescript
+import { readTextFileSync } from "std/fs/mod.ts";
+import { parse } from "std/encoding/yaml.ts";
+import { decode } from "std/encoding/utf8.ts";
+import marked from "https://cdn.skypack.dev/marked?dts";
+
+// Markdownファイルのパス
+const filePath = "./sample.md";
+
+// ファイルを読み込む
+const fileContent = readTextFileSync(filePath);
+
+// フロントマターとコンテンツを取得する
+const [frontMatter, content] = fileContent.split("---\n").slice(1);
+
+// フロントマターをオブジェクトに変換する
+const frontMatterObject = parse(decode(frontMatter.trim()).toString());
+
+// MarkdownをHTMLに変換する
+const html = marked(content);
+
+console.log("Front matter: ", frontMatterObject);
+console.log("Content: ", content);
+console.log("HTML: ", html);
+
+```
+
 <br/>
 
 俺: 標準ライブラリに Markdown のフロントマターを抽出するライブラリあるケド
 <https://deno.land/std@0.182.0/front_matter/mod.ts>　<br/>
-嘘つかないで！
+嘘つかないで😭
 
 <br/>
 
