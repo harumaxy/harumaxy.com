@@ -4,11 +4,7 @@ import { centerContainer } from "../utils/twind.common.ts";
 
 const homeLinks: HomeLinkProps[] = [
   {
-    text: "Home",
-    href: "/",
-  },
-  {
-    text: "About",
+    text: "About Me",
     href: "/about",
   },
   {
