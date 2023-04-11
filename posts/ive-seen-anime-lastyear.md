@@ -1,6 +1,6 @@
 ---
 title: 去年見て面白かったアニメ
-published_at: "2023-04-11 02:26:18"
+published_at: "2023-04-11T17:16:56+09:00"
 snippet: 2022年頃に見たやつ
 tags: ["blog", "anime"]
 ---
@@ -37,4 +37,5 @@ tags: ["blog", "anime"]
 
 見てないやつも刃渡り2億センチだけは聞け！
 
-<iframe width="700" height="563" src="https://www.youtube.com/embed/HEwAiwttN10" title="『チェンソーマン』第３話ノンクレジットエンディング / CHAINSAW MAN #3 Ending│マキシマム ザ ホルモン 「刃渡り2億センチ」" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+<iframe  width="560" height="315"
+src="https://www.youtube.com/embed/HEwAiwttN10" title="『チェンソーマン』第３話ノンクレジットエンディング / CHAINSAW MAN #3 Ending│マキシマム ザ ホルモン 「刃渡り2億センチ」" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>

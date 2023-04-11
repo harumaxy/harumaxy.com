@@ -1,6 +1,6 @@
 ---
 title: Demonstration
-published_at: "2022-11-04T15:00:00.000Z"
+published_at: "2023-04-11T17:16:48+09:00"
 snippet: Sample blog post.
 tags: ["blog", "demo"]
 ---
