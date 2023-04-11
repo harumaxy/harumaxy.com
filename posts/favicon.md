@@ -1,7 +1,7 @@
 ---
 title: favicon を git lfs で管理したら、Deno Deploy でうまく配信されなかった話
 published_at: "2023-04-11 13:48:24"
-snippet: Sample blog post.
+snippet: Git LFS
 tags: ["blog", "favicon"]
 ---
 
