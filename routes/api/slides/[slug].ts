@@ -21,7 +21,7 @@ export const handler = async (
         css,
       })
     );
-  } catch (e) {
+  } catch (_) {
     return new Response("Not found", { status: 404 });
   }
 };
