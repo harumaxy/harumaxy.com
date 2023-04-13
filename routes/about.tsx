@@ -5,7 +5,7 @@ import {
   PageProps,
 } from "https://deno.land/x/fresh@1.1.0/src/server/types.ts";
 import { render, CSS } from "$gfm";
-import { Head } from "https://deno.land/x/fresh@1.1.0/runtime.ts";
+import { Head } from "$fresh/runtime.ts";
 
 const __dirname = path.dirname(path.fromFileUrl(import.meta.url));
 
