@@ -23,6 +23,7 @@ export default function PostCard({ post }: { post: Post }) {
             day: "numeric",
           })}
         </time>
+        {post.is_slide && <p class="text-xl">Slide</p>}
       </a>
       <div class="flex-1" />
       <div class="sm:flex-1 text-center sm:text-right">

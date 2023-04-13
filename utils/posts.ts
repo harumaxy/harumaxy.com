@@ -12,6 +12,7 @@ const PostSchema = z.object({
   snippet: z.string(),
   content: z.string(),
   tags: z.array(z.string()),
+  is_slide: z.boolean().default(false),
 });
 
 export type Post = z.infer<typeof PostSchema>;
