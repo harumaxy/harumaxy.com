@@ -199,6 +199,20 @@ export async function getPost(slug: string): Promise<Post> {
 
 ---
 
+ただし...
+
+`npm:~` ディレクティブを使ってインポートしたnpm moduleを含んでいると `deno bundle ...` が使えない
+
+= Deno Deploy にデプロイ出来ない
+
+2023年Q1 に対応する予定らしい
+
+
+https://github.com/GJZwiers/sentry_deno/issues/14
+
+
+---
+
 # Fresh について
 
 ## Web framework for Preact SSR
