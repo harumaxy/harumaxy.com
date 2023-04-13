@@ -5,5 +5,8 @@
   "editor.suggest.showStatusBar": true,
   "editor.quickSuggestions": {
     "strings": true
+  },
+  "[markdown]": {
+    "editor.formatOnSave": false
   }
 }
