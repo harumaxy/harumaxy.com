@@ -5,6 +5,8 @@ import { render, CSS } from "$gfm";
 import "@/utils/highlights.ts";
 import Tag from "../../components/Tag.tsx";
 import { titleTextSize } from "../../utils/titleTextSize.ts";
+import Slide from "@/islands/Slide.tsx";
+import { Marp } from "npm:@marp-team/marp-core";
 
 export const handler: Handlers<Post> = {
   GET: async (req, ctx) => {
@@ -17,34 +19,13 @@ export const handler: Handlers<Post> = {
   },
 };
 
-function Slide({ data: post }: PageProps<Post>) {
-  // const marp = new Marp();
-  // const { html, css } = marp.render(post.content);
-  return (
-    <>
-      <div>hello</div>
-      {/* <Head>
-        <style dangerouslySetInnerHTML={{ __html: css }} />
-      </Head>
-      <div
-        class={`mt-8 p-6 sm:p-12 rounded-3xl`}
-        dangerouslySetInnerHTML={{
-          __html: html,
-        }}
-      ></div> */}
-    </>
-  );
-}
-
-function Article({ data: post }: PageProps<Post>) {
+function Article({ post }: { post: Post }) {
   return (
     <>
       <Head>
         <style dangerouslySetInnerHTML={{ __html: CSS }} />
       </Head>
       <div
-        // data-color-mode="dark"
-        // data-dark-theme="dark"
         class={`mt-8 p-6 sm:p-12 rounded-3xl overflow-hidden ${"markdown-body"}`}
         dangerouslySetInnerHTML={{
           __html: render(post.content, {
@@ -58,9 +39,14 @@ function Article({ data: post }: PageProps<Post>) {
 
 export default function PostPage(props: PageProps<Post>) {
   const { data: post } = props;
+  let marpResult: { html: string[]; css: string };
+  if (post.is_slide) {
+    const marp = new Marp();
+    marpResult = marp.render(post.content, { htmlAsArray: true });
+  }
 
   return (
-    <>
+    <div>
       <h1 class={`${titleTextSize(post.title)} font-bold`}>{post.title}</h1>
       <time>
         {new Date(post.published_at).toLocaleDateString("ja", {
@@ -74,7 +60,7 @@ export default function PostPage(props: PageProps<Post>) {
           <Tag tag={tag} key={tag} />
         ))}
       </div>
-      {post.is_slide ? <Slide {...props} /> : <Article {...props} />}
-    </>
+      {post.is_slide ? <Slide post={post} /> : <Article post={post} />}
+    </div>
   );
 }
