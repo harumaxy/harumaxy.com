@@ -59,10 +59,10 @@ export default function Slide({ post }: { post: Post }) {
     (e: KeyboardEvent) => {
       console.log(e);
 
-      if (e.key === "ArrowRight" || e.key === "a") {
+      if (e.key === "ArrowRight" || e.key === "d") {
         if (currentPage >= (marp?.htmls.length ?? 0) - 1) return;
         setCurrentPage(currentPage + 1);
-      } else if (e.key === "ArrowLeft" || e.key === "d") {
+      } else if (e.key === "ArrowLeft" || e.key === "a") {
         if (currentPage <= 0) return;
         setCurrentPage(currentPage - 1);
       }
@@ -88,6 +88,8 @@ export default function Slide({ post }: { post: Post }) {
               dangerouslySetInnerHTML={{ __html: marp.htmls[currentPage] }}
             ></div>
           </div>
+          <p class="text-indigo-600">D ➡ : Next Page</p>
+          <p class="text-indigo-600">A ⬅ : Previous Page</p>
         </>
       ) : null}
     </div>
