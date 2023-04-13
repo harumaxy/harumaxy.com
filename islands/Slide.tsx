@@ -16,7 +16,6 @@ function SideButton({
   const ref = useRef<HTMLAnchorElement>(null);
   const { getElementProperty } = useGetElementProperty(ref);
   const selfWidth = getElementProperty("width");
-  console.log(selfWidth);
 
   return (
     <a
@@ -57,8 +56,6 @@ export default function Slide({ post }: { post: Post }) {
 
   const onKeyDown = useCallback(
     (e: KeyboardEvent) => {
-      console.log(e);
-
       if (e.key === "ArrowRight" || e.key === "d") {
         if (currentPage >= (marp?.htmls.length ?? 0) - 1) return;
         setCurrentPage(currentPage + 1);
@@ -84,7 +81,7 @@ export default function Slide({ post }: { post: Post }) {
             <style dangerouslySetInnerHTML={{ __html: marp.css }} />
             <div
               onKeyDown={onKeyDown}
-              class={`${"marpit"} h-full`}
+              class={`${"marpit"} list-disc`}
               dangerouslySetInnerHTML={{ __html: marp.htmls[currentPage] }}
             ></div>
           </div>
