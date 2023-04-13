@@ -1,5 +1,5 @@
 import { HandlerContext } from "$fresh/server.ts";
-import { Marp } from "npm:@marp-team/marp-core";
+import { Marp } from "@marp-team/marp-core";
 import { getPost } from "../../../utils/posts.ts";
 
 export const handler = async (

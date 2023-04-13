@@ -6,7 +6,7 @@ import "@/utils/highlights.ts";
 import Tag from "../../components/Tag.tsx";
 import { titleTextSize } from "../../utils/titleTextSize.ts";
 import Slide from "@/islands/Slide.tsx";
-import { Marp } from "npm:@marp-team/marp-core";
+import { Marp } from "@marp-team/marp-core";
 
 export const handler: Handlers<Post> = {
   GET: async (req, ctx) => {

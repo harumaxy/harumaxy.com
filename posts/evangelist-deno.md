@@ -110,7 +110,7 @@ Deno を使えば...
 このサイトでも、Markdownスライドをレンダリングして返すのに npm の Marp パッケージを使用してます！
 
 ```ts
-import { Marp } from "npm:@marp-team/marp-core";
+import { Marp } from "@marp-team/marp-core";
 
 export const handler = async (req, ctx): Promise<Response> => {
   ...
