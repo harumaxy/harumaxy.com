@@ -205,9 +205,13 @@ export async function getPost(slug: string): Promise<Post> {
 
 `npm:~` ディレクティブを使ってインポートしたnpm moduleを含んでいると `deno bundle ...` が使えない
 
+`deno compile` では使えないだけで `deno run` では使える
+
+https://deno.land/manual@v1.32.4/node/npm_specifiers#npm-specifiers
+
 = Deno Deploy にデプロイ出来ない
 
-2023年Q1 に対応する予定らしい
+2023年Q1 に対応する予定らしいと噂
 
 
 https://github.com/GJZwiers/sentry_deno/issues/14
