@@ -13,7 +13,6 @@
     "./": "./",
     "$gfm": "https://deno.land/x/gfm@0.1.26/mod.ts",
     "feed": "https://esm.sh/feed@4.2.2",
-    "prism/": "https://esm.sh/prismjs@1.27.0/",
-    "@marp-team/marp-core": "npm:@marp-team/marp-core"
+    "prism/": "https://esm.sh/prismjs@1.27.0/"
   }
 }

@@ -6,7 +6,6 @@ import "@/utils/highlights.ts";
 import Tag from "../../components/Tag.tsx";
 import { titleTextSize } from "../../utils/titleTextSize.ts";
 import Slide from "@/islands/Slide.tsx";
-import { Marp } from "@marp-team/marp-core";
 
 export const handler: Handlers<Post> = {
   GET: async (req, ctx) => {
@@ -40,10 +39,6 @@ function Article({ post }: { post: Post }) {
 export default function PostPage(props: PageProps<Post>) {
   const { data: post } = props;
   let marpResult: { html: string[]; css: string };
-  if (post.is_slide) {
-    const marp = new Marp();
-    marpResult = marp.render(post.content, { htmlAsArray: true });
-  }
 
   return (
     <div>
@@ -60,7 +55,7 @@ export default function PostPage(props: PageProps<Post>) {
           <Tag tag={tag} key={tag} />
         ))}
       </div>
-      {post.is_slide ? <Slide post={post} /> : <Article post={post} />}
+      <Article post={post} />
     </div>
   );
 }
