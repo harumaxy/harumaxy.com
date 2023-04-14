@@ -50,7 +50,7 @@ export default function PostPage(props: PageProps<Post>) {
           day: "numeric",
         })}
       </time>
-      <div class="py-6">
+      <div class="py-2">
         {post.tags.map((tag) => (
           <Tag tag={tag} key={tag} />
         ))}
