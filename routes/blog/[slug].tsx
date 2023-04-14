@@ -39,6 +39,10 @@ function Article({ post }: { post: Post }) {
 export default function PostPage(props: PageProps<Post>) {
   const { data: post } = props;
   let marpResult: { html: string[]; css: string };
+  if (post.marp) {
+    const marp = new Marp();
+    marpResult = marp.render(post.content, { htmlAsArray: true });
+  }
 
   return (
     <div class="w-full min-h-[90vh] flex flex-col">
@@ -55,7 +59,7 @@ export default function PostPage(props: PageProps<Post>) {
           <Tag tag={tag} key={tag} />
         ))}
       </div>
-      <Article post={post} />
+      {post.marp ? <Slide post={post} /> : <Article post={post} />}
       <div class="flex-grow-1" />
     </div>
   );
