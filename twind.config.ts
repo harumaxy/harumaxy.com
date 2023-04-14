@@ -7,7 +7,7 @@ export default {
       sans: "Inter, sans-serif",
       mono: "JetBrains Mono, monospace",
       copperGothic: "Copperplate Gothic, sans-serif",
-      glitch: "'Rubik Glitch', cursive",
+      glitch: "'Rubik Glitch'",
     },
   },
 } as Options;
