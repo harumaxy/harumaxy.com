@@ -100,27 +100,29 @@ Deno を使えば...
   - fetch とか
   - サーバーサイド特有の機能は `Deno` ネームスペースに集約 (FileSystem など)
     　これを使わないようにすればフロントと共通コードが書ける
+---
+
+でも、Node.jsで書かれたこれまでのコード資産は使えないってこと...？
 
 ---
 
-Deno を使えば...
-- Node Polyfill 対応
+## Node Polyfill 対応
   - Node.js のライブラリを使うことができる
   
-このサイトでも、Markdownスライドをレンダリングして返すのに npm の Marp パッケージを使用してます！
+このサイトでも、Markdownスライドのレンダリングに npm モジュールを使用してます！
 
 ```ts
 import { Marp } from "@marp-team/marp-core";
 
-export const handler = async (req, ctx): Promise<Response> => {
-  ...
-  const marp = new Marp();
-  const { html, css } = marp.render(post.content, {
-    htmlAsArray: true,
-  });
+const marp = new Marp();
+const { html, css } = marp.render(post.content, {
+  htmlAsArray: true,
+});
+
 ```
 
-体感、Node.jsライブラリはいけるが、フロントライブラリはそのままだとインポートできない確率が高い...(React コンポーネントとか)
+> 体感、Node.jsライブラリはいける
+> フロントライブラリはそのままだと無理な確率が高い...(React Componentとか)
 
 ---
 
