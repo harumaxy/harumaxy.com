@@ -249,6 +249,19 @@ fresh の他には [astro](https://docs.astro.build/en/concepts/islands/) とい
 
 ※ hydration = 静的なHTMLページをJSをアタッチすることで動的にすること([wikipedia](https://en.wikipedia.org/wiki/Hydration_(web_development)))
 
+---
+
+このサイトに例えると...
+
+- 赤い部分
+  - JSがhydrateされた動的なアプリケーション
+- 青い部分
+  - 高速にロードされる静的HTML(zero JS)
+
+青い部分が海、赤い部分が島(island)
+
+
+![bg fit right](https://i.gyazo.com/ce7cc97aa51e364af277fb24d04514db.png)
 
 ---
 
