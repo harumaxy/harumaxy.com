@@ -1,7 +1,7 @@
 ---
 title: Deno 布教用
 published_at: "2023-04-11T17:17:01+09:00"
-snippet: Git LFS
+snippet: Slideshow だが、`deno compile` が npm ディレクティブに対応してないのでただの記事
 tags: ["blog", "slide", "deno"]
 is_slide: true
 marp: true
