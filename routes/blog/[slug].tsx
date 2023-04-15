@@ -41,7 +41,7 @@ export default function PostPage(props: PageProps<Post>) {
   let marpResult: { html: string[]; css: string };
 
   return (
-    <div>
+    <div class="w-full min-h-[90vh] flex flex-col">
       <h1 class={`${titleTextSize(post.title)} font-bold`}>{post.title}</h1>
       <time>
         {new Date(post.published_at).toLocaleDateString("ja", {
@@ -56,6 +56,7 @@ export default function PostPage(props: PageProps<Post>) {
         ))}
       </div>
       <Article post={post} />
+      <div class="flex-grow-1" />
     </div>
   );
 }
