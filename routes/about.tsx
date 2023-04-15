@@ -21,7 +21,9 @@ export const handler: Handlers<string> = {
 export default function About(props: PageProps<string>) {
   const { data: markdown } = props;
   return (
-    <div class={`flex items-center justify-center sm:(${centerContainer})`}>
+    <div
+      class={`w-full flex items-center justify-center sm:(${centerContainer})`}
+    >
       <Head>
         <style dangerouslySetInnerHTML={{ __html: CSS }} />
       </Head>

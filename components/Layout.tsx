@@ -7,7 +7,7 @@ export default function Layout({
   children: JSX.Element | JSX.Element[];
 }) {
   return (
-    <div>
+    <div class="min-h-[90vh] flex flex-col">
       <div class="flex flex-col sm:flex-row">
         <h1
           class={`text-5xl ${"font-glitch"}
@@ -30,7 +30,9 @@ export default function Layout({
           </ul>
         </nav>
       </div>
-      <main class="max-w-screen-xl sm:px-4 pt-16 mx-auto">{children}</main>
+      <main class="w-full flex flex-1 max-w-screen-xl items-center justify-center pt-16 mx-auto">
+        {children}
+      </main>
     </div>
   );
 }
