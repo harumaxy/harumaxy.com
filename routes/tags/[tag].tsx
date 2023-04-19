@@ -21,13 +21,13 @@ export default function TagBlogIndexPage(
   } = props;
 
   return (
-    <>
+    <div>
       <h1 class={`${"text-glitch"}  text-5xl font-bold`}>tag: {tag}</h1>
       <div class="mt-8">
         {posts.map((post) => (
           <PostCard post={post} />
         ))}
       </div>
-    </>
+    </div>
   );
 }
