@@ -38,11 +38,6 @@ function Article({ post }: { post: Post }) {
 
 export default function PostPage(props: PageProps<Post>) {
   const { data: post } = props;
-  let marpResult: { html: string[]; css: string };
-  if (post.marp) {
-    const marp = new Marp();
-    marpResult = marp.render(post.content, { htmlAsArray: true });
-  }
 
   return (
     <div class="w-full min-h-[90vh] flex flex-col">
