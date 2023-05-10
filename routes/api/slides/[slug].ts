@@ -6,8 +6,6 @@ export const handler = async (
   req: Request,
   _ctx: HandlerContext
 ): Promise<Response> => {
-  console.log(req.url);
-
   const slug = Array.from(req.url.matchAll(slideRegex))[0][1];
   const marpJson = await Deno.readTextFile(`slides/${slug}.json`);
   return new Response(marpJson, {
