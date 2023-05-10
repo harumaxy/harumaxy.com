@@ -38,7 +38,6 @@ function Article({ post }: { post: Post }) {
 
 export default function PostPage(props: PageProps<Post>) {
   const { data: post } = props;
-  let marpResult: { html: string[]; css: string };
 
   return (
     <div class="w-full min-h-[90vh] flex flex-col">
@@ -50,12 +49,12 @@ export default function PostPage(props: PageProps<Post>) {
           day: "numeric",
         })}
       </time>
-      <div class="py-6">
+      <div class="py-2">
         {post.tags.map((tag) => (
           <Tag tag={tag} key={tag} />
         ))}
       </div>
-      <Article post={post} />
+      {post.marp ? <Slide post={post} /> : <Article post={post} />}
       <div class="flex-grow-1" />
     </div>
   );

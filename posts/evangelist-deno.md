@@ -100,27 +100,29 @@ Deno を使えば...
   - fetch とか
   - サーバーサイド特有の機能は `Deno` ネームスペースに集約 (FileSystem など)
     　これを使わないようにすればフロントと共通コードが書ける
+---
+
+でも、Node.jsで書かれたこれまでのコード資産は使えないってこと...？
 
 ---
 
-Deno を使えば...
-- Node Polyfill 対応
+## Node Polyfill 対応
   - Node.js のライブラリを使うことができる
   
-このサイトでも、Markdownスライドをレンダリングして返すのに npm の Marp パッケージを使用してます！
+このサイトでも、Markdownスライドのレンダリングに npm モジュールを使用してます！
 
 ```ts
 import { Marp } from "@marp-team/marp-core";
 
-export const handler = async (req, ctx): Promise<Response> => {
-  ...
-  const marp = new Marp();
-  const { html, css } = marp.render(post.content, {
-    htmlAsArray: true,
-  });
+const marp = new Marp();
+const { html, css } = marp.render(post.content, {
+  htmlAsArray: true,
+});
+
 ```
 
-体感、Node.jsライブラリはいけるが、フロントライブラリはそのままだとインポートできない確率が高い...(React コンポーネントとか)
+> 体感、Node.jsライブラリはいける
+> フロントライブラリはそのままだと無理な確率が高い...(React Componentとか)
 
 ---
 
@@ -203,9 +205,13 @@ export async function getPost(slug: string): Promise<Post> {
 
 `npm:~` ディレクティブを使ってインポートしたnpm moduleを含んでいると `deno bundle ...` が使えない
 
+`deno compile` では使えないだけで `deno run` では使える
+
+https://deno.land/manual@v1.32.4/node/npm_specifiers#npm-specifiers
+
 = Deno Deploy にデプロイ出来ない
 
-2023年Q1 に対応する予定らしい
+2023年Q1 に対応する予定らしいと噂
 
 
 https://github.com/GJZwiers/sentry_deno/issues/14
@@ -249,6 +255,19 @@ fresh の他には [astro](https://docs.astro.build/en/concepts/islands/) とい
 
 ※ hydration = 静的なHTMLページをJSをアタッチすることで動的にすること([wikipedia](https://en.wikipedia.org/wiki/Hydration_(web_development)))
 
+---
+
+このサイトに例えると...
+
+- 赤い部分
+  - JSがhydrateされた動的なアプリケーション
+- 青い部分
+  - 高速にロードされる静的HTML(zero JS)
+
+青い部分が海、赤い部分が島(island)
+
+
+![bg fit right](https://i.gyazo.com/ce7cc97aa51e364af277fb24d04514db.png)
 
 ---
 
