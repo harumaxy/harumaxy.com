@@ -6,6 +6,7 @@ import "@/utils/highlights.ts";
 import Tag from "../../components/Tag.tsx";
 import { titleTextSize } from "../../utils/titleTextSize.ts";
 import Slide from "@/islands/Slide.tsx";
+import TwitterCard from "../../components/TwitterCard.tsx";
 
 export const handler: Handlers<Post> = {
   GET: async (req, ctx) => {
@@ -24,6 +25,7 @@ function Article({ post }: { post: Post }) {
       <Head>
         <style dangerouslySetInnerHTML={{ __html: CSS }} />
       </Head>
+      <TwitterCard post={post} />
       <div
         class={`mt-8 p-6 sm:p-12 rounded-3xl overflow-hidden ${"markdown-body"}`}
         dangerouslySetInnerHTML={{
