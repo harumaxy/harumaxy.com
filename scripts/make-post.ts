@@ -19,7 +19,7 @@ const yyyymmdd = today.toISOString().split("T")[0];
 const defaultPost = {
   slug: `${yyyymmdd}-${cli.options.slug!}`,
   title: "Title",
-  published_at: today.toISOString(),
+  published_at: `"${today.toISOString()}"`,
   is_slide: false,
   snippet: "summary",
   tags: "[]",

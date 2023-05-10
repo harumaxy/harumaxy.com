@@ -11,8 +11,8 @@ for (const md of marpMarkdowns) {
   const { html: htmls, css } = marp.render(md.content, {
     htmlAsArray: true,
   });
-  Deno.writeFile(
+  Deno.writeTextFile(
     path.join(__dirname, `../slides/${md.slug}.json`),
-    new TextEncoder().encode(JSON.stringify({ htmls, css }))
+    JSON.stringify({ htmls, css })
   );
 }
