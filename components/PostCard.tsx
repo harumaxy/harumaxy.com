@@ -9,7 +9,7 @@ export default function PostCard({ post }: { post: Post }) {
     items-center justify-center"
     >
       <a
-        class="text-center sm:text-left 
+        class="text-center sm:text-left
         transition duration-150 hover:text-yellow-400"
         href={`/blog/${post.slug}`}
       >
@@ -26,7 +26,7 @@ export default function PostCard({ post }: { post: Post }) {
         {post.marp && <p class="text-xl">Slide</p>}
       </a>
       <div class="flex-1" />
-      <div class="sm:flex-1 text-center sm:text-right">
+      <div class="sm:flex-1 text-center sm:text-right min-w-[300px]">
         <div class="mt-4 text-gray-300 pb-2">{post.snippet}</div>
         {post.tags.map((tag) => (
           <Tag tag={tag} />
