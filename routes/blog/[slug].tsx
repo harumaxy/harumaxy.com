@@ -34,6 +34,14 @@ function Article({ post }: { post: Post }) {
           }),
         }}
       ></div>
+      <style>{`
+            ul > li { list-style: disc; }
+            li > ul > li { list-style: circle; }
+            li > ul > li > ul > li { list-style: disc; }
+            ol > li { list-style: decimal; }
+            ol > li > ol > li { list-style: lower-alpha; }
+            ol > li > ol > li > ol > li { list-style: lower-roman; }
+      `}</style>
     </>
   );
 }
