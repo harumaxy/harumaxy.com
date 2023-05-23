@@ -23,6 +23,7 @@ const defaultPost = {
   is_slide: false,
   snippet: "summary",
   tags: "[]",
+  thumbnail_url: null,
 };
 
 const frontmatter = `---

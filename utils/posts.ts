@@ -13,6 +13,7 @@ const PostSchema = z.object({
   content: z.string(),
   tags: z.array(z.string()),
   marp: z.boolean().default(false),
+  thumbnail_url: z.string().nullish(),
 });
 
 export type Post = z.infer<typeof PostSchema>;
