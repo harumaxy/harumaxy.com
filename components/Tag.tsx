@@ -8,8 +8,8 @@ export default function Tag({ tag, count }: TagProps) {
       <span
         class="m-1 text-lg
         inline-block
-      bg-yellow-500
-      hover:bg-red-500
+      bg-tag
+      hover:bg-tag-hover
       duration-300
       py-2 px-4 rounded-full focus:outline-none focus:ring-2"
       >

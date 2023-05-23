@@ -45,8 +45,7 @@ function NavButton({ href, text }: { href: string; text: string }) {
       sm:text-3xl
       ${"font-glitch"}
       duration-300
-      text-gray-600 hover:text-[#CC513C]
-      bg-[#73F452] hover:bg-[#F6E84F]
+      bg-nav-btn hover:bg-nav-btn-hover
       `}
       >
         {text}

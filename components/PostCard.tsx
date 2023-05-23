@@ -10,7 +10,7 @@ export default function PostCard({ post }: { post: Post }) {
     >
       <a
         class="text-center sm:text-left
-        transition duration-150 hover:text-yellow-400"
+        transition duration-150 hover:text-link-hover"
         href={`/blog/${post.slug}`}
       >
         <h3 class={`${titleTextSize(post.title, true)} font-mono font-bold`}>
