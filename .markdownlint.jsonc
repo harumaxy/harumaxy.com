@@ -2,5 +2,6 @@
   "default": true,
   "single-h1": false,
   "no-multiple-blanks": false,
-  "line-length": false
+  "line-length": false,
+  "no-inline-html": false
 }

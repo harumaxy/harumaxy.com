@@ -12,7 +12,7 @@ export default function Thumbnail({ post }: { post: Post }) {
     <a href={`/blog/${post.slug}`}>
       <img
         //make lighter on hover
-        class="w-48 h-48 min-w-48 min-h-48 rounded-2xl transition duration-300 hover:opacity-80"
+        class="w-48 h-48 min-w-48 min-h-48 object-scale-down rounded-2xl transition duration-300 hover:opacity-80"
         src={post.thumbnail_url ?? noThumbnail}
         alt={post.title}
       />
