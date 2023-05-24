@@ -4,7 +4,7 @@ title: Blender Python を VSCode で書く
 published_at: "2023-05-24T02:03:58.835Z"
 is_slide: false
 snippet: summary
-tags: [blender, vscode]
+tags: [blender, vscode, python, poetry]
 thumbnail_url: https://res.cloudinary.com/harumaxy/image/upload/v1684894083/blender_community_badge_white_cdzlfk.png
 ---
 
@@ -14,13 +14,14 @@ Poetry, Blender はインストール済みとする。
 
 Python のプロジェクトマネージャー [Poetry](https://python-poetry.org/) を使う
 
-```sh
+```shell
 mkdir my-bpy && cd my-bpy
 poetry init
 poetry add fake-bpy-module-3.4
 poetry add -D flake8 black mypy
 poetry shell
-code .  # Open vscode
+# Open vscode
+code .
 ```
 
 
