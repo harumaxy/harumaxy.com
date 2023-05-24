@@ -4,3 +4,4 @@ import "prism/components/prism-jsx?no-check";
 import "prism/components/prism-tsx?no-check";
 import "prism/components/prism-rust?no-check";
 import "prism/components/prism-gdscript?no-check";
+import "prism/components/prism-python?no-check";
