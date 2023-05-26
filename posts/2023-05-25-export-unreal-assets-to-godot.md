@@ -174,9 +174,9 @@ bpy.ops.object.mode_set(mode="EDIT")
 
 armature = bpy.data.objects.get("Armature")  # type: ignore
 
-for bone in skelton.data.edit_bones:
+for bone in armature.data.edit_bones:
     if any([n in bone.name for n in exclude_names]):
-        skelton.data.edit_bones.remove(bone)
+        armature.data.edit_bones.remove(bone)
 
 for action in bpy.data.actions:
     for fcurve in action.fcurves:
