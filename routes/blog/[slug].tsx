@@ -28,6 +28,9 @@ function Article({ post }: { post: Post }) {
       <TwitterCard post={post} />
       <div
         class={`mt-8 p-6 sm:p-12 rounded-3xl overflow-hidden ${"markdown-body"}`}
+        data-color-mode="auto"
+        data-dark-theme="dark"
+        data-light-theme="light"
         dangerouslySetInnerHTML={{
           __html: render(post.content, {
             allowIframes: true,
@@ -41,6 +44,8 @@ function Article({ post }: { post: Post }) {
             ol > li { list-style: decimal; }
             ol > li > ol > li { list-style: lower-alpha; }
             ol > li > ol > li > ol > li { list-style: lower-roman; }
+
+            
       `}</style>
     </>
   );
