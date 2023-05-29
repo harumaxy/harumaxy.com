@@ -12,7 +12,7 @@ Poetry, Blender はインストール済みとする。
 
 ## Setup
 
-Python のプロジェクトマネージャー [Poetry](https://python-poetry.org/) を使う
+Python のパッケージマネージャー [Poetry](https://python-poetry.org/) を使う
 
 ```shell
 mkdir my-bpy && cd my-bpy
