@@ -589,7 +589,8 @@
   },
   "npm": {
     "specifiers": {
-      "@marp-team/marp-core": "@marp-team/marp-core@3.6.0_@marp-team+marpit@2.4.2"
+      "@marp-team/marp-core": "@marp-team/marp-core@3.6.0_@marp-team+marpit@2.4.2",
+      "@marp-team/marpit": "@marp-team/marpit@2.4.2"
     },
     "packages": {
       "@marp-team/marp-core@3.6.0_@marp-team+marpit@2.4.2": {
