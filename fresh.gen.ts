@@ -9,11 +9,12 @@ import * as $2 from "./routes/about.tsx";
 import * as $3 from "./routes/api/joke.ts";
 import * as $4 from "./routes/api/slides/[slug].ts";
 import * as $5 from "./routes/blog/[slug].tsx";
-import * as $6 from "./routes/blog/index.tsx";
-import * as $7 from "./routes/feeds.ts";
-import * as $8 from "./routes/index.tsx";
-import * as $9 from "./routes/tags/[tag].tsx";
-import * as $10 from "./routes/tags/index.tsx";
+import * as $6 from "./routes/blog/_middleware.ts";
+import * as $7 from "./routes/blog/index.tsx";
+import * as $8 from "./routes/feeds.ts";
+import * as $9 from "./routes/index.tsx";
+import * as $10 from "./routes/tags/[tag].tsx";
+import * as $11 from "./routes/tags/index.tsx";
 import * as $$0 from "./islands/Slide.tsx";
 
 const manifest = {
@@ -24,11 +25,12 @@ const manifest = {
     "./routes/api/joke.ts": $3,
     "./routes/api/slides/[slug].ts": $4,
     "./routes/blog/[slug].tsx": $5,
-    "./routes/blog/index.tsx": $6,
-    "./routes/feeds.ts": $7,
-    "./routes/index.tsx": $8,
-    "./routes/tags/[tag].tsx": $9,
-    "./routes/tags/index.tsx": $10,
+    "./routes/blog/_middleware.ts": $6,
+    "./routes/blog/index.tsx": $7,
+    "./routes/feeds.ts": $8,
+    "./routes/index.tsx": $9,
+    "./routes/tags/[tag].tsx": $10,
+    "./routes/tags/index.tsx": $11,
   },
   islands: {
     "./islands/Slide.tsx": $$0,
