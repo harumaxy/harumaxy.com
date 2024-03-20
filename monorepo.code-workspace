@@ -2,7 +2,7 @@
   "folders": [
     {
       "path": ".",
-      "name": "rood"
+      "name": "root"
     },
     {
       "path": "apps/client"
