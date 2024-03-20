@@ -2,6 +2,11 @@
   "name": "client",
   "module": "index.ts",
   "type": "module",
+  "scripts": {
+    "build": "bun build src/index.ts --outfile=dist/index.js",
+    "dev": "bun run build --watch",
+    "production": "bun run build --minify"
+  },
   "devDependencies": {
     "@types/bun": "latest"
   },
