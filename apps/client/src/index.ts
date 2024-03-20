@@ -4,6 +4,7 @@ import { Home } from "./pages/home";
 import "./styles/master.css";
 import { Header } from "./components/header";
 import { About } from "./pages/about";
+import { Blog } from "./pages/blog";
 
 const { a, div, h1, head, header, html, li, main, nav, ul } = van.tags;
 
@@ -19,7 +20,7 @@ function App() {
           [
             ["/", Home],
             ["/about", About],
-            ["/blog", () => div("Blog")],
+            ["/blog", Blog],
             ["/tags", () => div("Tags")],
           ] as [string, () => HTMLDivElement][]
         ).map(([path, component]) => ({ path, component })),
