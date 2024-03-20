@@ -1,12 +1,13 @@
 import van from "vanjs-core";
-import { Link } from "./StyledLink";
+import { Link } from "./styled-link";
+import { siteName } from "../const";
 
 const t = van.tags;
 
 export function Header() {
   return t.div(
     { class: "flex flex-col md:flex-row ai:center jc:center p:32" },
-    t.h1({ class: "f:48" }, "Site Name"),
+    t.h1({ class: "f:48" }, siteName),
     t.div({ class: "flex-grow:1" }),
     NavList
   );
