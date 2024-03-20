@@ -1,13 +1,29 @@
 import van from "vanjs-core";
+import { Router } from "vanjs-routing";
+import { Home } from "./pages/home";
+// import "@master/normal.css";
 import "@master/css";
+import "./styles/master.css";
 
-function Body() {
-  const { body, div, head, header, html } = van.tags;
+const { a, div, h1, head, header, html, li, nav, ul } = van.tags;
 
-  return body(
+function App() {
+  return div(
     header(div("Hello, VanJS!"), div("This is a simple VanJS app.")),
-    div("This is the main content.")
+    Router({
+      routes: [
+        { path: "/", component: Home },
+        {
+          path: "/about",
+          component: () => div("About"),
+        },
+        {
+          path: "/contact",
+          component: () => div("Contact"),
+        },
+      ],
+    })
   );
 }
 
-van.add(window.document.body, Body);
+van.add(window.document.body, App());
