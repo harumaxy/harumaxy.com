@@ -12,6 +12,7 @@
     }
   ],
   "settings": {
+    "liveServer.settings.file": "index.html",
     "liveServer.settings.multiRootWorkspaceName": "client"
   }
 }
