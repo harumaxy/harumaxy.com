@@ -1,4 +1,5 @@
 import van from "vanjs-core";
+import "@master/css";
 
 function Body() {
   const { body, div, head, header, html } = van.tags;

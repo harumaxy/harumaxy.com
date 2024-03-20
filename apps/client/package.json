@@ -14,6 +14,7 @@
     "typescript": "^5.0.0"
   },
   "dependencies": {
+    "@master/css": "^1.37.8",
     "vanjs-core": "^1.5.0"
   }
 }
