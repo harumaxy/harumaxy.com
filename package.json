@@ -1,8 +1,7 @@
 {
-  "name": "harumaxy-com",
+  "name": "harumaxy-website",
   "version": "1.0.0",
   "workspaces": [
-    "packages/*",
     "apps/*"
   ]
 }
