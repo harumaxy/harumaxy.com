@@ -1,0 +1,14 @@
+{
+  "folders": [
+    {
+      "path": ".",
+      "name": "rood"
+    },
+    {
+      "path": "apps/client"
+    },
+    {
+      "path": "apps/server"
+    }
+  ]
+}
