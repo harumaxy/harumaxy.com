@@ -1,5 +1,5 @@
 import van from "vanjs-core";
-import { Link } from "../components/StyledLink";
+import { Link } from "../components/styled-link";
 
 const t = van.tags;
 
