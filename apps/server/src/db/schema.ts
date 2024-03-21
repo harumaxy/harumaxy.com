@@ -1,41 +1,28 @@
 import {
-  integer,
-  pgEnum,
   pgTable,
   serial,
-  uniqueIndex,
   varchar,
-  text,
   timestamp,
+  text,
+  foreignKey,
+  integer,
 } from "drizzle-orm/pg-core";
+import { sql } from "drizzle-orm";
 
-export const role = pgEnum("role", ["admin", "user"]);
+export const pgmigrations = pgTable("pgmigrations", {
+  id: serial("id").primaryKey().notNull(),
+  name: varchar("name", { length: 255 }).notNull(),
+  runOn: timestamp("run_on", { mode: "string" }).notNull(),
+});
 
-export const users = pgTable(
-  "users",
-  {
-    id: serial("id").primaryKey(),
-    role: role("role").notNull().default("user"),
-  },
-  (users) => {
-    return {};
-  }
-);
+export const users = pgTable("users", {
+  id: serial("id").primaryKey().notNull(),
+  username: text("username"),
+});
 
-export const posts = pgTable(
-  "posts",
-  {
-    id: serial("id").primaryKey(),
-    slug: varchar("slug", { length: 256 }).notNull().unique(),
-    title: varchar("title", { length: 256 }).notNull(),
-    content: text("content"),
-    published_at: timestamp("published_at", { mode: "date" }).defaultNow(),
-    thumbnail: varchar("thumbnail", { length: 256 }),
-    author_id: integer("author_id")
-      .notNull()
-      .references(() => users.id),
-  },
-  (posts) => {
-    return {};
-  }
-);
+export const posts = pgTable("posts", {
+  id: serial("id").primaryKey().notNull(),
+  authorId: integer("author_id").references(() => users.id),
+  title: text("title"),
+  body: text("body"),
+});
