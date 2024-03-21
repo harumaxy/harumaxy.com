@@ -3,11 +3,16 @@
   "version": "1.0.50",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "bun run --watch src/index.ts"
+    "dev": "bun run --watch src/index.ts",
+    "dk": "drizzle-kit",
+    "migrate": "node-pg-migrate",
+    "seed": "bun run ./src/db/seed.ts"
   },
   "dependencies": {
     "drizzle-orm": "^0.30.4",
     "elysia": "latest",
+    "node-pg-migrate": "^6.2.2",
+    "pg": "^8.11.3",
     "postgres": "^3.4.3"
   },
   "devDependencies": {
