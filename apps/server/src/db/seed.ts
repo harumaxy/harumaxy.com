@@ -21,6 +21,7 @@ const db = drizzle(client);
 
 await db.transaction(async (trx) => {
   await trx.execute(sql`SET LOCAL app.uid = 1;`);
+  await trx.execute(sql`SET LOCAL app.role = 'user';`);
   await trx
     .insert(schema.users)
     .values([
@@ -43,6 +44,7 @@ await db.transaction(async (trx) => {
 
 await db.transaction(async (trx) => {
   await trx.execute(sql`SET LOCAL app.uid = 1;`);
+  await trx.execute(sql`SET LOCAL app.role = 'user';`);
   await trx
     .insert(schema.posts)
     .values([
@@ -57,6 +59,46 @@ await db.transaction(async (trx) => {
       target: [schema.posts.id],
       set: conflictUpdateSet(schema.posts, ["author_id", "title", "body"]),
     });
+});
+
+await db.transaction(async (trx) => {
+  await trx.execute(sql`SET LOCAL app.uid = 1;`);
+  await trx.execute(sql`SET LOCAL app.role = 'admin';`);
+
+  await trx
+    .insert(schema.courses)
+    .values([
+      {
+        id: 1,
+        title: "course 1",
+      },
+    ])
+    .onConflictDoNothing();
+  await trx
+    .insert(schema.course_items)
+    .values(
+      [1, 2, 3, 4, 5].map(
+        (i) =>
+          ({
+            id: i,
+            course_id: 1,
+            title: `item ${i}`,
+          } satisfies typeof schema.course_items.$inferInsert)
+      )
+    )
+    .onConflictDoNothing();
+  await trx
+    .insert(schema.purchase_of_course_item)
+    .values(
+      [1, 2, 3].map(
+        (i) =>
+          ({
+            uid: 1,
+            item_id: i,
+          } satisfies typeof schema.purchase_of_course_item.$inferInsert)
+      )
+    )
+    .onConflictDoNothing();
 });
 
 process.exit(0);
