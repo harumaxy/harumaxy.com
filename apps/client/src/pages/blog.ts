@@ -1,5 +1,6 @@
 import van from "vanjs-core";
 import { Link } from "vanjs-routing";
+import { Await } from "vanjs-ui";
 
 const t = van.tags;
 
@@ -15,19 +16,37 @@ type PostSubset = Omit<Post, "content">;
 
 export function Blog() {
   // TODO: fetch data from API
-  const posts: PostSubset[] = [
-    {
-      slug: "test",
-      title: "test post",
-      tags: ["test"],
-      thumbnail: "https://via.placeholder.com/150",
-      published_at: "2021-01-01T00:00:00Z",
-    },
-  ];
+  const postsProm = (async () => {
+    await new Promise((resolve) => setTimeout(resolve, 10));
+    return [1, 2, 3].map(
+      (i) =>
+        ({
+          slug: "test" + i,
+          title: "test post " + i,
+          tags: ["test"],
+          thumbnail: "https://via.placeholder.com/150",
+          published_at: "2021-01-01T00:00:00Z",
+        } satisfies PostSubset)
+    );
+  })();
 
   return t.div(
-    t.h1({ class: "f:48 f:bold t:center" }, "Blog"),
-    t.div({ class: "mt:4rem" }, posts.map(Card))
+    {
+      class:
+        "p:32 m:auto w:100vw pt:10rem@md flex flex-direction:column jc:center max-w:1280px",
+    },
+    t.h1({ class: "f:48 f:bold t:center pb:4rem" }, "Blog"),
+    t.div(
+      { class: "t:center" },
+      Await(
+        {
+          value: postsProm,
+          Loading: () => t.div({ class: "f:48" }, "loading..."),
+          Error: () => t.div("error"),
+        },
+        (posts) => t.div({ class: "mt:4rem" }, posts.map(Card))
+      )
+    )
   );
 }
 
@@ -39,11 +58,15 @@ function Card(p: PostSubset) {
   });
 
   return t.div(
-    { class: "bt:1|solid|gray-80" },
+    { class: "bt:1|solid|gray-80 p:2rem" },
     Link(
-      { className: "t:center", href: `/blog/${p.slug}` },
-      t.h3({ class: "" }, p.title),
-      t.time({ class: "block" }, dateStr)
+      { className: "t:center flex jc:center", href: `/blog/${p.slug}` },
+      t.div(
+        { class: "m:auto flex flex-direction:column gap:2rem" },
+        t.h3({ class: "f:32" }, p.title),
+        t.time({ class: "block" }, dateStr)
+      ),
+      t.img({ class: "m:auto", src: p.thumbnail, alt: p.title })
     )
   );
 }

@@ -9,7 +9,7 @@ export function Home() {
       class:
         "h:100% m:auto flex flex-direction:column ai:center jc:center gap:10rem",
     },
-    t.h1("Welcome to My HomePage"),
+    t.h1({ class: "f:48" }, "Welcome to My HomePage"),
     t.ul(
       { class: "flex ai:center jc:space-around gap:2rem list-style-type:none" },
       (
