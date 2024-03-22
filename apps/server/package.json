@@ -7,6 +7,8 @@
     "dk": "drizzle-kit",
     "migrate": "node-pg-migrate",
     "migrate:gen": "node-pg-migrate create -j sql",
+    "up": "node-pg-migrate up",
+    "pull": "drizzle-kit introspect:pg",
     "seed": "bun run ./src/db/seed.ts"
   },
   "dependencies": {
