@@ -4,17 +4,19 @@ import { db } from "./client";
 
 type DB = typeof db;
 
+interface SecurityConfig {
+  uid: number;
+  role: string;
+}
+
 export function secureQuery<R>(
-  _db: DB,
-  config: {
-    uid: number;
-    role: string;
-  },
+  conn: DB,
+  { uid, role }: SecurityConfig,
   query: (trx: DB) => Promise<R>
 ) {
-  return _db.transaction(async (trx) => {
-    await trx.execute(sql.raw(`SET LOCAL app.uid = ${config.uid};`));
-    await trx.execute(sql.raw(`SET LOCAL app.role = '${config.role}';`));
+  return conn.transaction(async (trx) => {
+    await trx.execute(sql.raw(`SET LOCAL app.uid = ${uid};`));
+    await trx.execute(sql.raw(`SET LOCAL app.role = '${role}';`));
     return query(trx);
   });
 }
