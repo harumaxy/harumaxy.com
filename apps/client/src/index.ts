@@ -2,6 +2,8 @@ import van from "vanjs-core";
 import { Router } from "vanjs-routing";
 import { Home } from "./pages/home";
 import "./styles/master.css";
+import "@master/normal.css";
+import "github-markdown-css";
 import { Header } from "./components/header";
 import { About } from "./pages/about";
 import { Blog } from "./pages/blog";
