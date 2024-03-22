@@ -18,6 +18,7 @@ function App() {
         className: "h:100%",
         routes: (
           [
+            ["/index.html", Home],
             ["/", Home],
             ["/about", About],
             ["/blog", Blog],
