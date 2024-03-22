@@ -1,7 +1,8 @@
 import { sql } from "drizzle-orm";
-import { drizzle } from "drizzle-orm/postgres-js";
+import { PostgresJsDatabase, drizzle } from "drizzle-orm/postgres-js";
+import { db } from "./client";
 
-type DB = ReturnType<typeof drizzle>;
+type DB = typeof db;
 
 export function secureQuery<R>(
   _db: DB,

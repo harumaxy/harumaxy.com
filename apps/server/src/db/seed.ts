@@ -3,6 +3,8 @@ import * as schema from "./schema";
 import { drizzle } from "drizzle-orm/postgres-js";
 import postgres from "postgres";
 import { PgTable, PgUpdateSetSource } from "drizzle-orm/pg-core";
+import { secureQuery } from "./secure-query";
+import { db } from "./client";
 
 export function conflictUpdateSet<TTable extends PgTable>(
   table: TTable,
@@ -16,12 +18,7 @@ export function conflictUpdateSet<TTable extends PgTable>(
   ) as PgUpdateSetSource<TTable>;
 }
 
-const client = postgres(process.env.DATABASE_URL_FOR_APP!);
-const db = drizzle(client);
-
-await db.transaction(async (trx) => {
-  await trx.execute(sql`SET LOCAL app.uid = 1;`);
-  await trx.execute(sql`SET LOCAL app.role = 'user';`);
+await secureQuery(db, { uid: 1, role: "user" }, async (trx) => {
   await trx
     .insert(schema.users)
     .values([
@@ -42,9 +39,7 @@ await db.transaction(async (trx) => {
     });
 });
 
-await db.transaction(async (trx) => {
-  await trx.execute(sql`SET LOCAL app.uid = 1;`);
-  await trx.execute(sql`SET LOCAL app.role = 'user';`);
+await secureQuery(db, { uid: 1, role: "user" }, async (trx) => {
   await trx
     .insert(schema.posts)
     .values([
@@ -61,10 +56,7 @@ await db.transaction(async (trx) => {
     });
 });
 
-await db.transaction(async (trx) => {
-  await trx.execute(sql`SET LOCAL app.uid = 1;`);
-  await trx.execute(sql`SET LOCAL app.role = 'admin';`);
-
+await secureQuery(db, { uid: 1, role: "admin" }, async (trx) => {
   await trx
     .insert(schema.courses)
     .values([
