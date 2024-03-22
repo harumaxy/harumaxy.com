@@ -12,7 +12,7 @@ import { sql } from "drizzle-orm";
 export const pgmigrations = pgTable("pgmigrations", {
   id: serial("id").primaryKey().notNull(),
   name: varchar("name", { length: 255 }).notNull(),
-  runOn: timestamp("run_on", { mode: "string" }).notNull(),
+  run_on: timestamp("run_on", { mode: "string" }).notNull(),
 });
 
 export const users = pgTable("users", {
@@ -22,7 +22,7 @@ export const users = pgTable("users", {
 
 export const posts = pgTable("posts", {
   id: serial("id").primaryKey().notNull(),
-  authorId: integer("author_id").references(() => users.id),
+  author_id: integer("author_id").references(() => users.id),
   title: text("title"),
   body: text("body"),
 });

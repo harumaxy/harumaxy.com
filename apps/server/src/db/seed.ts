@@ -48,14 +48,14 @@ await db.transaction(async (trx) => {
     .values([
       {
         id: 1,
-        authorId: 1,
+        author_id: 1,
         title: "Hello",
         body: "World",
       },
     ])
     .onConflictDoUpdate({
       target: [schema.posts.id],
-      set: conflictUpdateSet(schema.posts, ["authorId", "title", "body"]),
+      set: conflictUpdateSet(schema.posts, ["author_id", "title", "body"]),
     });
 });
 
