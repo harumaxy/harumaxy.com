@@ -45,18 +45,18 @@ SELECT
   );
 
 DO $$ BEGIN
-  CREATE POLICY admin_can_create_course_items ON course_items FOR INSERT, UPDATE, DELETE
+  CREATE POLICY admin_can_manage_course_items ON course_items FOR ALL
     USING (CURRENT_SETTING('app.role') = 'admin');
-  CREATE POLICY admin_can_create_courses ON courses FOR INSERT, UPDATE, DELETE
+  CREATE POLICY admin_can_manage_courses ON courses FOR ALL
     USING (CURRENT_SETTING('app.role') = 'admin');
 END $$;
 
 -- Down Migration
 DROP POLICY only_available_purchased_items ON course_items;
 
-DROP POLICY admin_can_create_course_items ON course_items;
+DROP POLICY admin_can_manage_course_items ON course_items;
 
-DROP POLICY admin_can_create_courses ON courses;
+DROP POLICY admin_can_manage_courses ON courses;
 
 DROP TABLE purchase_of_course_item;
 
