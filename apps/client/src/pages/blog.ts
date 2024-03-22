@@ -18,7 +18,7 @@ export function Blog() {
   // TODO: fetch data from API
   const postsProm = (async () => {
     await new Promise((resolve) => setTimeout(resolve, 10));
-    return [1, 2, 3].map(
+    return [1, 2, 3, 4, 5].map(
       (i) =>
         ({
           slug: "test" + i,
@@ -33,11 +33,11 @@ export function Blog() {
   return t.div(
     {
       class:
-        "p:32 m:auto w:100vw pt:10rem@md flex flex-direction:column jc:center max-w:1280px",
+        "p:32 m:auto w:100vw pt:2rem@md flex flex-direction:column jc:center max-w:1280px",
     },
     t.h1({ class: "f:48 f:bold t:center pb:4rem" }, "Blog"),
     t.div(
-      { class: "t:center" },
+      { class: "h:70vh t:center overflow:scroll scrollbar" },
       Await(
         {
           value: postsProm,
