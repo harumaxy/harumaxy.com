@@ -40,32 +40,33 @@ Backend Engineer
 const t = van.tags;
 
 export function About() {
-  const bio = t.div(
-    {
-      class:
-        "markdown-body p:32 r:10 flex gap:2rem ai:center jc:space-between flex-direction:column flex-direction:row@md",
-    },
+  return t.div(
+    { class: "p:32 m:auto w:100vw pt:10rem@md flex jc:center" },
     t.div(
       {
-        class: "flex-grow:1 ai:center jc:center flex",
+        class:
+          "markdown-body flex-grow:1 max-w:1280px p:32 r:10 flex gap:2rem ai:center jc:space-between flex-direction:column flex-direction:row@md",
       },
-      t.img({
-        class: "r:1/2 h:16rem w:16rem",
-        src: "https://avatars.githubusercontent.com/u/15980686?v=4",
-      })
-    ),
-    t.div(
-      { class: "flex-grow:2 flex-basis:fit-content" },
-      Await(
+      t.div(
         {
-          value: about,
-          Loading: () => t.div("loading..."),
-          Error: () => t.div("error"),
+          class: "flex-grow:1 ai:center jc:center flex",
         },
-        (about) => t.div({ innerHTML: about as string })
+        t.img({
+          class: "r:1/2 h:16rem w:16rem",
+          src: "https://avatars.githubusercontent.com/u/15980686?v=4",
+        })
+      ),
+      t.div(
+        { class: "flex-grow:2 flex-basis:fit-content" },
+        Await(
+          {
+            value: about,
+            Loading: () => t.div("loading..."),
+            Error: () => t.div("error"),
+          },
+          (about) => t.div({ innerHTML: about as string })
+        )
       )
     )
   );
-
-  return t.div({ class: "p:32 m:auto h:100% pt:10rem@md" }, bio);
 }
