@@ -3,9 +3,7 @@ CREATE TABLE
   courses (
     id serial PRIMARY KEY,
     title VARCHAR(255) NOT NULL,
-    description TEXT,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    description TEXT
   );
 
 CREATE TABLE
@@ -14,16 +12,13 @@ CREATE TABLE
     course_id INT NOT NULL REFERENCES courses (id) ON DELETE CASCADE,
     title VARCHAR(255) NOT NULL,
     description TEXT,
-    video_url VARCHAR(255),
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    video_url VARCHAR(255)
   );
 
 CREATE TABLE
   purchase_of_course_item (
     uid INT NOT NULL REFERENCES users (id) ON DELETE CASCADE,
     item_id INT NOT NULL REFERENCES course_items (id) ON DELETE CASCADE,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (uid, item_id)
   );
 
@@ -35,7 +30,7 @@ GRANT ALL ON purchase_of_course_item TO server_app;
 
 ALTER TABLE course_items ENABLE ROW LEVEL SECURITY;
 
-CREATE POLICY select_course_items_policy ON course_items FOR ALL USING (
+CREATE POLICY only_available_purchased_items ON course_items FOR ALL USING (
   CURRENT_SETTING('app.role') = 'admin' OR
   id IN (
     SELECT
@@ -48,7 +43,7 @@ CREATE POLICY select_course_items_policy ON course_items FOR ALL USING (
 );
 
 -- Down Migration
-DROP POLICY select_course_items_policy ON course_items;
+DROP POLICY only_available_purchased_items ON course_items;
 
 DROP TABLE purchase_of_course_item;
 
