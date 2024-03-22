@@ -8,6 +8,7 @@
     "migrate": "node-pg-migrate",
     "migrate:gen": "node-pg-migrate create -j sql",
     "up": "node-pg-migrate up",
+    "down": "node-pg-migrate down",
     "pull": "drizzle-kit introspect:pg",
     "seed": "bun run ./src/db/seed.ts"
   },
