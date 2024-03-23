@@ -4,5 +4,8 @@
   "version": "1.0.0",
   "workspaces": [
     "apps/*"
-  ]
+  ],
+  "scripts": {
+    "build": "(cd apps/client && bun run build) && (cd apps/server && bun run build)"
+  }
 }
