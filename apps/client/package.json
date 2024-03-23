@@ -16,7 +16,6 @@
     "typescript": "^5.0.0"
   },
   "dependencies": {
-    "@harumaxy-com/server": "workspace:*",
     "@master/css": "^1.37.8",
     "@master/normal.css": "^2.1.1",
     "clsx": "^2.1.0",
