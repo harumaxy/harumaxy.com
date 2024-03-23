@@ -3,3 +3,4 @@
 /functions
 /dist/*
 !/dist/index.html
+/.wrangler
