@@ -1,2 +1,5 @@
 /node_modules
 .envrc
+/functions
+/dist/*
+!/dist/index.html

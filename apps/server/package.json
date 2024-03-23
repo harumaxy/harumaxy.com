@@ -11,7 +11,8 @@
     "up": "node-pg-migrate up",
     "down": "node-pg-migrate down",
     "pull": "drizzle-kit introspect:pg",
-    "seed": "bun run ./src/db/seed.ts"
+    "seed": "bun run ./src/db/seed.ts",
+    "build": "bun build src/index.ts --outdir=../../functions --minify"
   },
   "dependencies": {
     "drizzle-orm": "^0.30.4",
