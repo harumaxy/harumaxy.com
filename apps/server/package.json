@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "bun run --watch src/index.ts",
+    "dev": "wrangler dev src/index.ts",
     "dk": "drizzle-kit",
     "migrate": "node-pg-migrate",
     "migrate:gen": "node-pg-migrate create -j sql",
@@ -22,8 +22,10 @@
     "postgres": "^3.4.3"
   },
   "devDependencies": {
+    "@cloudflare/workers-types": "^4.20240320.1",
     "bun-types": "latest",
-    "drizzle-kit": "^0.20.14"
+    "drizzle-kit": "^0.20.14",
+    "wrangler": "^3.37.0"
   },
   "module": "src/index.js",
   "exports": "./src/index.ts"

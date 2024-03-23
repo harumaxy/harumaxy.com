@@ -2,16 +2,12 @@ import { Elysia } from "elysia";
 
 const DEFAULT_PORT = 3000;
 
-const app = new Elysia().get("/", () => "Hello Elysia");
+const app = new Elysia({ aot: false }).get("/", () => "Hello Elysia");
 
-export default app;
-
-console.log(
-  [
-    "🦊 Elysia is running at http://",
-    app.server?.hostname ?? "localhost:",
-    app.server?.port ?? DEFAULT_PORT,
-  ].join("")
-);
+export default {
+  async fetch(req: Request) {
+    return await app.handle(req);
+  },
+};
 
 export type ServerApp = typeof app;

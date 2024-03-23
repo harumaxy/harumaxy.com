@@ -6,7 +6,8 @@
     "apps/*"
   ],
   "scripts": {
-    "build": "(cd apps/client && bun run build) && (cd apps/server && bun run build)"
+    "build": "(cd apps/client && bun run build) && (cd apps/server && bun run build)",
+    "w": "wrangler"
   },
   "dependencies": {
     "@cloudflare/workers-types": "^4.20240320.1",
