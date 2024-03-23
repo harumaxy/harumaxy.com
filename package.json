@@ -7,7 +7,9 @@
   ],
   "scripts": {
     "build": "(cd apps/client && bun run build) && (cd apps/server && bun run build)",
-    "w": "wrangler"
+    "w": "wrangler",
+    "dev": "bun run build && bun w pages dev dist --d1 DB=harumaxy-com-db",
+    "deploy": "bun run build && bun w pages deploy --project-name harumaxy-com dist "
   },
   "dependencies": {
     "@cloudflare/workers-types": "^4.20240320.1",
