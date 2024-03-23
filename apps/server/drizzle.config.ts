@@ -2,9 +2,10 @@ import { defineConfig } from "drizzle-kit";
 export default defineConfig({
   schema: "./src/db/schema.ts",
   out: "./src/db",
-  driver: "pg",
+  driver: "d1",
   dbCredentials: {
-    connectionString: process.env.DATABASE_URL!,
+    dbName: "harumaxy-com-db",
+    wranglerConfigPath: "../../wrangler.toml",
   },
   verbose: true,
   strict: true,
