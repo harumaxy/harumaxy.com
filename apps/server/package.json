@@ -1,6 +1,7 @@
 {
-  "name": "server",
+  "name": "@harumaxy-com/server",
   "version": "1.0.50",
+  "private": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "bun run --watch src/index.ts",
@@ -23,5 +24,6 @@
     "bun-types": "latest",
     "drizzle-kit": "^0.20.14"
   },
-  "module": "src/index.js"
+  "module": "src/index.js",
+  "exports": "./src/index.ts"
 }
