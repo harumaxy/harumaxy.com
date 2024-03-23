@@ -6,6 +6,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "wrangler dev src/index.ts",
     "dk": "drizzle-kit",
+    "w": "wrangler",
     "migrate": "node-pg-migrate",
     "migrate:gen": "node-pg-migrate create -j sql",
     "up": "node-pg-migrate up",
