@@ -5,7 +5,9 @@
   "module": "index.ts",
   "type": "module",
   "scripts": {
-    "build": "bun build src/index.ts --outdir=dist --minify",
+    "build:client": "bun build src/index.ts --outdir=dist --minify",
+    "build:functions": "bun build src/functions/index.ts --outdir=functions --minify",
+    "build": "npm run build:client && npm run build:functions",
     "dev": "bun run build --watch",
     "production": "bun run build"
   },
