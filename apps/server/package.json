@@ -12,7 +12,7 @@
     "down": "node-pg-migrate down",
     "pull": "drizzle-kit introspect:pg",
     "seed": "bun run ./src/db/seed.ts",
-    "build": "bun build src/index.ts --outdir=../../functions --minify"
+    "build": "bun build src/index.ts --outfile=../../functions/api.js --minify"
   },
   "dependencies": {
     "drizzle-orm": "^0.30.4",
