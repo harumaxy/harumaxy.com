@@ -7,8 +7,9 @@
     "dev": "wrangler dev src/index.ts",
     "dk": "drizzle-kit",
     "w": "wrangler",
-    "up": "node-pg-migrate up",
-    "pull": "drizzle-kit introspect:pg",
+    "migrate": "bun dk generate:sqlite",
+    "up": "bun w d1 migrations apply harumaxy-com-db",
+    "list": "bun w d1 migrations list harumaxy-com-db",
     "seed": "bun run ./src/db/seed.ts",
     "build": "bun build src/index.ts --outfile=../../functions/api.js --minify"
   },
