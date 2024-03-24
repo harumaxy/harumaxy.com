@@ -5,7 +5,7 @@ import { Await, Toggle } from "vanjs-ui";
 const t = van.tags;
 
 export function BlogEditor() {
-  const preview = van.state(true);
+  const preview = van.state(false);
   const content = van.state("# Preview");
 
   return t.form(
