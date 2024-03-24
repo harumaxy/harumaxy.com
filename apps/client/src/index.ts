@@ -8,6 +8,7 @@ import { Header } from "./components/header";
 import { About } from "./pages/about";
 import { Blog } from "./pages/blog";
 import { BlogSlug } from "./pages/blog.{slug}";
+import { BlogEditor } from "./pages/blog.{slug}.edit";
 
 const { a, div, h1, head, header, html, li, main, nav, ul } = van.tags;
 
@@ -20,21 +21,26 @@ function App() {
     Header,
     main(
       { class: "flex-grow:1" },
-      Router({
-        className: "h:100%",
-        routes: (
-          [
-            ["/index.html", Home],
-            ["/", Home],
-            ["/about", About],
-            ["/blog", Blog],
-            ["/blog/:slug", BlogSlug],
-            ["/tags", () => div("Tags")],
-          ] as [string, () => HTMLDivElement][]
-        ).map(([path, component]) => ({ path, component })),
-      })
+      makeRouter([
+        ["/index.html", Home],
+        ["/", Home],
+        ["/about", About],
+        ["/blog", Blog],
+        ["/blog/:slug", BlogSlug],
+        ["/blog/:slug/edit", BlogEditor],
+        ["/tags", () => div("Tags")],
+      ])
     )
   );
+}
+function makeRouter(paths: [string, () => HTMLElement][], prefix?: string) {
+  return Router({
+    className: "h:100%",
+    routes: paths.map(([path, component]) => ({
+      path: (prefix ?? "") + path,
+      component,
+    })),
+  });
 }
 
 van.add(window.document.body, App());
