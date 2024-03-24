@@ -1,11 +1,17 @@
 import { defineConfig } from "drizzle-kit";
+import * as fs from "fs";
+
+const d1LocalPath = "../../.wrangler/state/v3/d1/miniflare-D1DatabaseObject";
+const sqliteFile = fs
+  .readdirSync(d1LocalPath)
+  .find((f) => f.endsWith(".sqlite"));
+
 export default defineConfig({
   schema: "./src/db/schema.ts",
   out: "./drizzle",
-  driver: "d1",
+  driver: "better-sqlite",
   dbCredentials: {
-    dbName: "harumaxy-com-db",
-    wranglerConfigPath: "../../wrangler.toml",
+    url: d1LocalPath + "/" + sqliteFile,
   },
   verbose: true,
   strict: true,
