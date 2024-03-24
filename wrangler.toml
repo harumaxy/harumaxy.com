@@ -1,0 +1,6 @@
+[[d1_databases]]
+binding = "DB"                                       # i.e. available in your Worker on env.DB
+database_name = "harumaxy-com-db"
+database_id = "dfc1359e-5962-4327-90b2-890948b3bb7b"
+migrations_dir = "./apps/server/drizzle"
+preview_database_id = "DB"
