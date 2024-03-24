@@ -11,7 +11,7 @@
     "up": "bun w d1 migrations apply harumaxy-com-db",
     "list": "bun w d1 migrations list harumaxy-com-db",
     "seed": "bun run ./src/db/seed.ts",
-    "build": "bun build src/index.ts --outfile=../../functions/api.js --minify"
+    "build": "bun build src/index.ts --outfile=../../functions/api/[[path]].js --minify"
   },
   "dependencies": {
     "drizzle-orm": "^0.30.4",
@@ -20,6 +20,7 @@
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20240320.1",
+    "better-sqlite3": "^9.4.3",
     "bun-types": "latest",
     "drizzle-kit": "^0.20.14",
     "wrangler": "^3.37.0"
