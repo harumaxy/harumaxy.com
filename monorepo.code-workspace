@@ -12,7 +12,8 @@
     }
   ],
   "settings": {
+    "liveServer.settings.root": "./dist",
     "liveServer.settings.file": "index.html",
-    "liveServer.settings.multiRootWorkspaceName": "client"
+    "liveServer.settings.multiRootWorkspaceName": "root"
   }
 }
