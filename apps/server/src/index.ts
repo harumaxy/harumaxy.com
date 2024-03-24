@@ -15,9 +15,7 @@ function makeApp(env: Env) {
   return app
     .state("db", db)
     .get("/api", async () => {
-      return await db.run(
-        sql`select name from sqlite_master where type='table';`
-      );
+      return "Hello from Pages Functions!";
     })
     .get(
       "/api/posts",
