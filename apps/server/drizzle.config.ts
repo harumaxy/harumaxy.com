@@ -1,7 +1,7 @@
 import { defineConfig } from "drizzle-kit";
 export default defineConfig({
   schema: "./src/db/schema.ts",
-  out: "./src/db",
+  out: "./drizzle",
   driver: "d1",
   dbCredentials: {
     dbName: "harumaxy-com-db",
