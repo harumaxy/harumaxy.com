@@ -5,7 +5,7 @@
   "module": "index.ts",
   "type": "module",
   "scripts": {
-    "build": "bun build src/index.ts --outdir=../../dist --minify",
+    "build": "bun build src/index.ts --outdir=../../dist --minify --define SERVER_URL=$SERVER_URL",
     "build:split-chunk": "vite build",
     "dev": "bun run build --watch",
     "production": "bun run build"
@@ -17,6 +17,7 @@
     "typescript": "^5.0.0"
   },
   "dependencies": {
+    "@elysiajs/eden": "^1.0.6",
     "@harumaxy-com/server": "workspace:*",
     "@master/css": "^1.37.8",
     "@master/normal.css": "^2.1.1",
