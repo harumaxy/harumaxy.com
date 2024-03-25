@@ -14,6 +14,7 @@
     "build": "bun build src/index.ts --outfile=../../functions/api/[[path]].js --minify"
   },
   "dependencies": {
+    "@elysiajs/cors": "^1.0.2",
     "drizzle-orm": "^0.30.4",
     "drizzle-typebox": "^0.1.1",
     "elysia": "latest"
@@ -25,6 +26,5 @@
     "drizzle-kit": "^0.20.14",
     "wrangler": "^3.37.0"
   },
-  "module": "src/index.js",
-  "exports": "./src/index.ts"
+  "module": "src/index.js"
 }

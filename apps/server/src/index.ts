@@ -5,14 +5,17 @@ import { makeDB } from "./db/client";
 import * as schema from "./db/schema";
 import * as validators from "./db/validators";
 import { eq, sql } from "drizzle-orm";
+import cors from "@elysiajs/cors";
+import { createSelectSchema } from "drizzle-typebox";
 
 const DEFAULT_PORT = 3000;
-
-const app = new Elysia({ aot: false }).get("/", () => "Hello Elysia");
+const PostSchema = createSelectSchema(schema.posts);
 
 function makeApp(env: Env) {
   const db = makeDB(env.DB);
-  return app
+  return new Elysia({ aot: false })
+    .use(cors())
+    .get("/", () => "Hello Elysia")
     .state("db", db)
     .get("/api", async () => {
       return "Hello from Pages Functions!";
@@ -38,59 +41,52 @@ function makeApp(env: Env) {
         }),
       }
     )
-    .get(
-      "/api/posts/:id",
-      async ({ store: { db }, params }) => {
-        const id = Number(params.id);
-        if (Number.isNaN(id)) {
-          return { error: "Invalid id" };
-        }
-        const result = await db
-          .select()
-          .from(schema.posts)
-          .where(eq(schema.posts.id, id))
-          .limit(1);
-        return result;
-      },
-      {
-        params: t.Object({ id: t.String() }),
-      }
-    )
     .post(
       "/api/posts",
       async ({ store: { db }, body }) => {
         const result = await db.insert(schema.posts).values(body).returning();
-        return result;
+        return result[0]!;
       },
       {
         body: validators.createPost,
       }
     )
-    .guard(
-      {
-        transform: ({ params }) => {
-          // @ts-ignore
-          const id = +params.id;
-          // @ts-ignore
-          if (!Number.isNaN(id)) params.id = id;
-        },
+    .get(
+      "/api/posts/:slug",
+      async ({ set, store: { db }, params: { slug } }) => {
+        const result = await db
+          .select()
+          .from(schema.posts)
+          .where(eq(schema.posts.slug, slug))
+          .limit(1);
+        const post = result[0];
+        if (!post) {
+          set.status = 404;
+          return "Not Found";
+        }
+
+        return post;
       },
-      (app_) =>
-        app_.patch(
-          "/api/posts/:id",
-          async ({ store: { db }, body, params: { id } }) => {
-            const result = await db
-              .update(schema.posts)
-              .set(body)
-              .where(eq(schema.posts.id, id))
-              .returning();
-            return result;
-          },
-          {
-            params: t.Object({ id: t.Number() }),
-            body: validators.updatePost,
-          }
-        )
+      {
+        response: {
+          200: PostSchema,
+          404: t.String(),
+        },
+      }
+    )
+    .patch(
+      "/api/posts/:slug",
+      async ({ store: { db }, body, params: { slug } }) => {
+        const result = await db
+          .update(schema.posts)
+          .set(body)
+          .where(eq(schema.posts.slug, slug))
+          .returning();
+        return result;
+      },
+      {
+        body: validators.updatePost,
+      }
     );
 }
 
@@ -100,4 +96,4 @@ export function onRequest(eventContext: EventContext<{}, string, {}>) {
   return app.fetch(request as unknown as Request);
 }
 
-export type ServerApp = typeof app;
+export type ServerApp = ReturnType<typeof makeApp>;
