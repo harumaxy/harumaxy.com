@@ -6,6 +6,7 @@
   "type": "module",
   "scripts": {
     "build": "bun build src/index.ts --outdir=../../dist --minify",
+    "build:split-chunk": "vite build",
     "dev": "bun run build --watch",
     "production": "bun run build"
   },
@@ -16,15 +17,16 @@
     "typescript": "^5.0.0"
   },
   "dependencies": {
+    "@harumaxy-com/server": "workspace:*",
     "@master/css": "^1.37.8",
     "@master/normal.css": "^2.1.1",
-    "@harumaxy-com/server": "workspace:*",
     "clsx": "^2.1.0",
     "github-markdown-css": "^5.5.1",
     "marked": "^12.0.1",
     "vanjs-core": "^1.5.0",
     "vanjs-routing": "^1.1.3",
     "vanjs-ui": "^0.10.0",
+    "vite": "^5.2.6",
     "wrangler": "^3.37.0"
   }
 }
