@@ -1,34 +1,16 @@
 import van from "vanjs-core";
 import { Link } from "vanjs-routing";
 import { Await } from "vanjs-ui";
+import { app } from "../client";
+import type { Post } from "@harumaxy-com/server/src/db/types";
 
 const t = van.tags;
 
-interface Post {
-  slug: string;
-  title: string;
-  published_at: string; // ISO 8601
-  content: string; // markdown
-  tags: string[];
-  thumbnail: string; // URL
-}
-type PostSubset = Omit<Post, "content">;
+const defaultThumbnail = "https://via.placeholder.com/150";
 
 export function Blog() {
   // TODO: fetch data from API
-  const postsProm = (async () => {
-    await new Promise((resolve) => setTimeout(resolve, 10));
-    return [1, 2, 3, 4, 5].map(
-      (i) =>
-        ({
-          slug: "test" + i,
-          title: "test post " + i,
-          tags: ["test"],
-          thumbnail: "https://via.placeholder.com/150",
-          published_at: "2021-01-01T00:00:00Z",
-        } satisfies PostSubset)
-    );
-  })();
+  const postsProm = app.api.posts.get();
 
   return t.div(
     {
@@ -44,14 +26,15 @@ export function Blog() {
           Loading: () => t.div({ class: "f:48" }, "loading..."),
           Error: () => t.div("error"),
         },
-        (posts) => t.div({ class: "mt:4rem" }, posts.map(Card))
+        ({ data }) =>
+          data ? t.div({ class: "mt:4rem" }, data.map(Card)) : t.div("No data")
       )
     )
   );
 }
 
-function Card(p: PostSubset) {
-  const dateStr = new Date(p.published_at).toLocaleDateString("ja", {
+function Card(p: Post) {
+  const dateStr = new Date().toLocaleDateString("ja", {
     year: "numeric",
     month: "short",
     day: "numeric",
