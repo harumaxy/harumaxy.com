@@ -75,13 +75,17 @@ export function BlogEditor() {
       t.div({ class: "flex-grow:1 h:100% w:100% max-w:1280px@lg" }, () =>
         preview.val
           ? RenderPost(title.val, content.val)
-          : Editor(title, content)
+          : Editor(title, content, thumbnail)
       )
     )
   );
 }
 
-function Editor(title: State<string>, content: State<string>) {
+function Editor(
+  title: State<string>,
+  content: State<string>,
+  thumbnail: State<string | null>
+) {
   return t.div(
     {
       class: "flex flex-direction:column jc:start h:inherit w:inherit gap:1rem",
@@ -94,6 +98,17 @@ function Editor(title: State<string>, content: State<string>) {
         value: title,
         oninput: (e) => {
           title.val = e.target.value;
+        },
+      })
+    ),
+    t.div(
+      { class: "flex jc:start ai:center gap:1rem" },
+      t.label({}, "Thumbnail: "),
+      t.input({
+        class: "b:1|solid|white px:.2rem",
+        value: thumbnail,
+        oninput: (e) => {
+          thumbnail.val = e.target.value;
         },
       })
     ),
