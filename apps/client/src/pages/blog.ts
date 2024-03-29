@@ -26,8 +26,15 @@ export function Blog() {
           Loading: () => t.div({ class: "f:48" }, "loading..."),
           Error: () => t.div("error"),
         },
-        ({ data }) =>
-          data ? t.div({ class: "mt:4rem" }, data.map(Card)) : t.div("No data")
+        ({ data }) => {
+          if (Array.isArray(data)) {
+            return t.div({ class: "mt:4rem" }, data.map(Card));
+          }
+          if (data?.error) {
+            return t.div(data.error);
+          }
+          return t.div("No data");
+        }
       )
     )
   );
