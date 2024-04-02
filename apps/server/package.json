@@ -8,7 +8,7 @@
     "dk": "drizzle-kit",
     "w": "wrangler",
     "migrate": "bun dk generate:sqlite",
-    "up": "bun w d1 migrations apply harumaxy-com-db",
+    "up": "bun dk push:sqlite",
     "list": "bun w d1 migrations list harumaxy-com-db",
     "seed": "bun run ./src/db/seed.ts",
     "build": "bun build src/index.ts --outfile=../../functions/api/[[path]].js --minify"
