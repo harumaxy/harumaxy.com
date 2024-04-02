@@ -1,8 +1,8 @@
 import van from "vanjs-core";
-import { Link } from "vanjs-routing";
 import { Await } from "vanjs-ui";
 import { app } from "../client";
 import type { Post } from "@harumaxy-com/server/src/db/types";
+import context from "../context";
 
 const t = van.tags;
 
@@ -49,8 +49,12 @@ function Card(p: Post) {
 
   return t.div(
     { class: "bt:1|solid|gray-80 p:2rem" },
-    Link(
-      { className: "t:center flex jc:center", href: `/blog/${p.slug}` },
+    context.link(
+      {
+        className: "t:center flex jc:center",
+        name: "/blog/:slug",
+        params: { slug: p.slug },
+      },
       t.div(
         { class: "m:auto flex flex-direction:column gap:2rem" },
         t.h3({ class: "f:32" }, p.title),

@@ -1,15 +1,14 @@
 import { marked } from "marked";
 import van, { type State } from "vanjs-core";
-import { getRouterParams, getRouterQuery, navigate } from "vanjs-routing";
 import { Await, Toggle } from "vanjs-ui";
 import type { Post } from "@harumaxy-com/server/src/db/types";
 import { app } from "../client";
 import { RenderPost } from "../components/render-post";
+import context from "../context";
 
 const t = van.tags;
 
-export function BlogEditor() {
-  const slug = van.state<string | undefined>(undefined);
+export function BlogEditor({ slug }: { slug: string }) {
   const post = van.state<Post | undefined>(undefined);
   const preview = van.state(false);
   const title = van.state("");
@@ -17,19 +16,13 @@ export function BlogEditor() {
   const thumbnail = van.state<string | null>(null);
 
   // Like useEffect or useMemo
-  van.derive(() => {
-    slug.val = getRouterParams().slug;
-  });
   van.derive(async () => {
-    if (!slug.val) return;
-    const { data, error, status } = await app.api
-      .posts({ slug: slug.val })
-      .get();
+    const { data, error, status } = await app.api.posts({ slug }).get();
     if (error) console.error(error);
     const postFromServer =
       status === 200
         ? data ?? undefined
-        : (await app.api.posts.post({ slug: slug.val })).data ?? undefined;
+        : (await app.api.posts.post({ slug })).data ?? undefined;
     post.val = postFromServer;
   });
   van.derive(() => {
@@ -59,12 +52,19 @@ export function BlogEditor() {
           class: "b:1|solid|white px:1rem",
           onclick: async (e) => {
             e.preventDefault();
-            await app.api.posts({ slug: slug.val! }).patch({
+            await app.api.posts({ slug }).patch({
               title: title.val,
               content: content.val,
               thumbnail: thumbnail.val,
             });
-            console.log(navigate(`/blog/${slug.val}`));
+            console.log(
+              context.navigate(`/blog/:slug`, {
+                context,
+                navState: {},
+                query: {},
+                params: { slug },
+              })
+            );
           },
         },
         "Save"
