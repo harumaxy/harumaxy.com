@@ -5,6 +5,7 @@ import { Blog } from "./pages/blog";
 import { BlogSlug } from "./pages/blog.{slug}";
 import { BlogEditor } from "./pages/blog.{slug}.edit";
 import van from "vanjs-core";
+import { Login } from "./pages/login";
 
 const t = van.tags;
 
@@ -23,6 +24,7 @@ const { route } = context;
     ["/blog/:slug", BlogSlug, "Blog"],
     ["/blog/:slug/edit", BlogEditor, "Edit Blog"],
     ["/tags", t.div("Tags"), "Tags"],
+    ["/login", Login, "Login"],
   ] as const
 ).forEach(([path, page, title]) => {
   route(path, path, async () => page, { title });
