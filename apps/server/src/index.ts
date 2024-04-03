@@ -7,6 +7,7 @@ import * as validators from "./db/validators";
 import { eq, sql } from "drizzle-orm";
 import cors from "@elysiajs/cors";
 import { createSelectSchema } from "drizzle-typebox";
+import { authPlugin } from "./auth";
 
 const DEFAULT_PORT = 3000;
 const PostSchema = createSelectSchema(schema.posts);
@@ -15,6 +16,7 @@ function makeApp(env: Env) {
   const db = makeDB(env.DB);
   return new Elysia({ aot: false })
     .use(cors())
+    .use(authPlugin)
     .get("/", () => "Hello Elysia")
     .state("db", db)
     .get("/api", async () => {
@@ -41,16 +43,7 @@ function makeApp(env: Env) {
         }),
       }
     )
-    .post(
-      "/api/posts",
-      async ({ store: { db }, body }) => {
-        const result = await db.insert(schema.posts).values(body).returning();
-        return result[0]!;
-      },
-      {
-        body: validators.createPost,
-      }
-    )
+
     .get(
       "/api/posts/:slug",
       async ({ set, store: { db }, params: { slug } }) => {
@@ -74,19 +67,47 @@ function makeApp(env: Env) {
         },
       }
     )
-    .patch(
-      "/api/posts/:slug",
-      async ({ store: { db }, body, params: { slug } }) => {
-        const result = await db
-          .update(schema.posts)
-          .set(body)
-          .where(eq(schema.posts.slug, slug))
-          .returning();
-        return result;
-      },
+    .guard(
       {
-        body: validators.updatePost,
-      }
+        beforeHandle: async ({ cookie, jwt, set }) => {
+          const auth = await jwt.verify(cookie.auth.value);
+          console.log(auth);
+
+          if (!auth) {
+            set.status = 401;
+            return "Unauthorized";
+          }
+        },
+      },
+      (app_) =>
+        app_
+          .post(
+            "/api/posts",
+            async ({ store: { db }, body }) => {
+              const result = await db
+                .insert(schema.posts)
+                .values(body)
+                .returning();
+              return result[0]!;
+            },
+            {
+              body: validators.createPost,
+            }
+          )
+          .patch(
+            "/api/posts/:slug",
+            async ({ store: { db }, body, params: { slug } }) => {
+              const result = await db
+                .update(schema.posts)
+                .set(body)
+                .where(eq(schema.posts.slug, slug))
+                .returning();
+              return result;
+            },
+            {
+              body: validators.updatePost,
+            }
+          )
     );
 }
 
