@@ -5,10 +5,15 @@ import type { Post } from "@harumaxy-com/server/src/db/types";
 import { app } from "../client";
 import { RenderPost } from "../components/render-post";
 import context from "../context";
+import { session } from "../states";
 
 const t = van.tags;
 
 export function BlogEditor({ slug }: { slug: string }) {
+  if (!session.val) {
+    return t.div("Unauthorized");
+  }
+
   const post = van.state<Post | undefined>(undefined);
   const preview = van.state(false);
   const title = van.state("");

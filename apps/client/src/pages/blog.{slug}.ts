@@ -5,18 +5,21 @@ import { app } from "../client";
 import { RenderPost } from "../components/render-post";
 import { Await } from "vanjs-ui";
 import { Link } from "../components/styled-link";
+import { session } from "../states";
 
 const t = van.tags;
 
 export function BlogSlug({ slug }: { slug: string }) {
   const post = app.api.posts({ slug: slug }).get();
-
   return t.div(
     {
       class:
         "flex flex-direction:column ai:stretch h:inherit w:inherit m:auto px:4rem gap:2rem",
     },
-    t.div(Link(`/blog/:slug/edit`, "Edit", { slug: slug })),
+    () =>
+      session.val
+        ? t.div(Link(`/blog/:slug/edit`, "Edit", { slug: slug }))
+        : null,
     Await(
       {
         value: post,

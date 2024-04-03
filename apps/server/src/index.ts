@@ -99,7 +99,7 @@ function makeApp(env: Env) {
               body: validators.createPost,
             }
           )
-          .post(
+          .patch(
             "/api/posts/:slug",
             async ({ store: { db }, body, params: { slug } }) => {
               const result = await db
