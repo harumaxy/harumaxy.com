@@ -17,6 +17,10 @@ function makeApp(env: Env) {
   return new Elysia({ aot: false })
     .use(cors())
     .use(authPlugin)
+    .onError(({ error, set }) => {
+      const msg = error.message;
+      return msg;
+    })
     .get("/", () => "Hello Elysia")
     .state("db", db)
     .get("/api", async () => {
@@ -71,11 +75,9 @@ function makeApp(env: Env) {
       {
         beforeHandle: async ({ cookie, jwt, set }) => {
           const auth = await jwt.verify(cookie.auth.value);
-          console.log(auth);
-
           if (!auth) {
             set.status = 401;
-            return "Unauthorized";
+            throw new Error("Unauthorized");
           }
         },
       },
@@ -94,7 +96,7 @@ function makeApp(env: Env) {
               body: validators.createPost,
             }
           )
-          .patch(
+          .post(
             "/api/posts/:slug",
             async ({ store: { db }, body, params: { slug } }) => {
               const result = await db

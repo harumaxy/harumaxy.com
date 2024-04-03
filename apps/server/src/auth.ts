@@ -1,7 +1,10 @@
 import { jwt } from "@elysiajs/jwt";
 import { Elysia, t } from "elysia";
 
-export const authPlugin = new Elysia()
+export const authPlugin = new Elysia({
+  name: "auth-plugin",
+  seed: "seed",
+})
   .use(
     jwt({
       name: "jwt",
@@ -10,21 +13,25 @@ export const authPlugin = new Elysia()
   )
   .post(
     "/api/auth/login",
-    async ({ jwt, body, cookie: { auth }, set }) => {
-      const { username, password } = body;
-      if (username === "admin" && password === "password") {
-        auth.set({
-          value: await jwt.sign({
-            username,
-            password,
-          }),
-          httpOnly: true,
-          maxAge: 60 * 60 * 24 * 7,
-        });
-        return `Sign in as ${username}`;
+    async ({ jwt, body, cookie: { auth }, set, store }) => {
+      const { username, password } = store as {
+        username: string;
+        password: string;
+      };
+      if (username !== body.username || password !== body.password) {
+        set.status = "Unauthorized";
+        throw new Error("Unauthorized");
       }
-      set.status = "Unauthorized";
-      return "Unauthorized";
+      const maxAge = 60 * 60 * 24 * 7;
+      auth.set({
+        value: await jwt.sign({
+          username,
+        }),
+        httpOnly: true,
+        maxAge,
+        path: "/",
+      });
+      set.redirect = "/";
     },
     {
       body: t.Object({
@@ -33,14 +40,13 @@ export const authPlugin = new Elysia()
       }),
     }
   )
-  .get("/api/auth/username", async ({ jwt, cookie: { auth }, set }) => {
-    const profile = await jwt.verify(auth.value);
-
+  .get("/api/auth/username", async ({ jwt, cookie, set }) => {
+    const profile = await jwt.verify(cookie.auth.value);
     if (!profile) {
       set.status = 401;
-      return "Unauthorized";
+      throw new Error("Unauthorized");
     }
     return {
-      username: profile.username,
+      username: profile.username as string,
     };
   });

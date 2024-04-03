@@ -4,14 +4,14 @@
   "private": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "wrangler dev src/index.ts",
     "dk": "drizzle-kit",
     "w": "wrangler",
     "migrate": "bun dk generate:sqlite",
     "up": "bun dk push:sqlite",
     "list": "bun w d1 migrations list harumaxy-com-db",
     "seed": "bun run ./src/db/seed.ts",
-    "build": "bun build src/index.ts --outfile=../../functions/api/[[path]].js --minify"
+    "build": "bun build src/index.ts --outfile=../../functions/api/[[path]].js --minify",
+    "dev": "bun run build --watch"
   },
   "dependencies": {
     "@elysiajs/cors": "^1.0.2",
