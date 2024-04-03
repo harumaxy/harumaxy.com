@@ -14,7 +14,10 @@ const PostSchema = createSelectSchema(schema.posts);
 
 function makeApp(env: Env) {
   const db = makeDB(env.DB);
+
   return new Elysia({ aot: false })
+    .state("username", env.USERNAME)
+    .state("password", env.PASSWORD)
     .use(cors())
     .use(authPlugin)
     .onError(({ error, set }) => {
