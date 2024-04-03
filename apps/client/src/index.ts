@@ -4,10 +4,14 @@ import "@master/normal.css";
 import "github-markdown-css";
 import { Header } from "./components/header";
 import context from "./context";
+import { checkSession } from "./states";
 
 const t = van.tags;
 
 function App() {
+  van.derive(() => {
+    checkSession();
+  });
   return t.div(
     {
       class:
