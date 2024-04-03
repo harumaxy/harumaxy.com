@@ -22,11 +22,13 @@ export const authPlugin = new Elysia({
         set.status = "Unauthorized";
         throw new Error("Unauthorized");
       }
+
       const maxAge = 60 * 60 * 24 * 7;
+      const token = await jwt.sign({
+        username,
+      });
       auth.set({
-        value: await jwt.sign({
-          username,
-        }),
+        value: token,
         httpOnly: true,
         maxAge,
         path: "/",
@@ -47,6 +49,7 @@ export const authPlugin = new Elysia({
       throw new Error("Unauthorized");
     }
     return {
+      expires: Date.now() + (cookie.auth.maxAge ?? 0) * 1000,
       username: profile.username as string,
     };
   });
