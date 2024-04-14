@@ -1,6 +1,7 @@
 import van from "vanjs-core";
 import { parse } from "marked";
 import { Await } from "vanjs-ui";
+import { avatarUrl } from "../const";
 
 // markdown
 const about = parse(
@@ -34,7 +35,7 @@ Backend Engineer
 - Rust
 \`\`\`
 `,
-  { gfm: true, async: true }
+  { gfm: true, async: true },
 );
 
 const t = van.tags;
@@ -53,8 +54,8 @@ export function About() {
         },
         t.img({
           class: "r:1/2 h:16rem w:16rem",
-          src: "https://avatars.githubusercontent.com/u/15980686?v=4",
-        })
+          src: avatarUrl,
+        }),
       ),
       t.div(
         { class: "flex-grow:2 flex-basis:fit-content" },
@@ -64,9 +65,9 @@ export function About() {
             Loading: () => t.div("loading..."),
             Error: () => t.div("error"),
           },
-          (about) => t.div({ innerHTML: about as string })
-        )
-      )
-    )
+          (about) => t.div({ innerHTML: about as string }),
+        ),
+      ),
+    ),
   );
 }

@@ -3,6 +3,7 @@ import { Await } from "vanjs-ui";
 import { app } from "../client";
 import type { Post } from "@harumaxy-com/server/src/db/types";
 import context from "../context";
+import { avatarUrl } from "../const";
 
 const t = van.tags;
 
@@ -34,9 +35,9 @@ export function Blog() {
             return t.div(data.error);
           }
           return t.div("No data");
-        }
-      )
-    )
+        },
+      ),
+    ),
   );
 }
 
@@ -58,9 +59,9 @@ function Card(p: Post) {
       t.div(
         { class: "m:auto flex flex-direction:column gap:2rem" },
         t.h3({ class: "f:32" }, p.title),
-        t.time({ class: "block" }, dateStr)
+        t.time({ class: "block" }, dateStr),
       ),
-      t.img({ class: "m:auto", src: p.thumbnail, alt: p.title })
-    )
+      t.img({ class: "m:auto", src: p.thumbnail || avatarUrl, alt: p.title }),
+    ),
   );
 }
