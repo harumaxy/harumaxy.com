@@ -14,7 +14,7 @@ export function HeaderLink(
 
 export function LogoLink() {
   return context.link(
-    { name: "/", class: "f:48 f:rgb(255,234,0):hover" },
+    { name: "/", class: "f:48 f:rgb(255,234,0):hover f:bold" },
     siteName,
   );
 }
