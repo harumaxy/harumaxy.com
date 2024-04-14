@@ -1,5 +1,5 @@
 import van from "vanjs-core";
-import { Link } from "../components/styled-link";
+import { HeaderLink } from "../components/styled-link";
 
 const t = van.tags;
 
@@ -17,7 +17,7 @@ export function Home() {
           ["/about", "About Me"],
           ["/blog", "Blog"],
         ] as [string, string][]
-      ).map(([href, text]) => Link(href, text))
-    )
+      ).map(([href, text]) => HeaderLink(href, text)),
+    ),
   );
 }

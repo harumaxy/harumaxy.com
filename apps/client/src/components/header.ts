@@ -1,6 +1,7 @@
 import van from "vanjs-core";
-import { Link } from "./styled-link";
+import { HeaderLink, LogoLink } from "./styled-link";
 import { siteName } from "../const";
+import context from "../context";
 
 const t = van.tags;
 
@@ -10,9 +11,9 @@ export function Header() {
       class:
         "flex flex-direction:column flex-direction:row@md ai:center jc:center p:32",
     },
-    t.h1({ class: "f:48" }, siteName),
+    LogoLink,
     t.div({ class: "flex-grow:1" }),
-    NavList
+    NavList,
   );
 }
 
@@ -27,10 +28,10 @@ function NavList() {
       ["/about", "About"],
       ["/blog", "Blog"],
       ["/tags", "Tags"],
-    ].map(([href, text]) => NavItem(href, text))
+    ].map(([href, text]) => NavItem(href, text)),
   );
 }
 
 function NavItem(href: string, text: string) {
-  return t.li(Link(href, text));
+  return t.li(HeaderLink(href, text));
 }

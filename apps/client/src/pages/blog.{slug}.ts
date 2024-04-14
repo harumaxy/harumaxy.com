@@ -4,7 +4,7 @@ import van from "vanjs-core";
 import { app } from "../client";
 import { RenderPost } from "../components/render-post";
 import { Await } from "vanjs-ui";
-import { Link } from "../components/styled-link";
+import { HeaderLink } from "../components/styled-link";
 import { session } from "../states";
 
 const t = van.tags;
@@ -18,7 +18,7 @@ export function BlogSlug({ slug }: { slug: string }) {
     },
     () =>
       session.val
-        ? t.div(Link(`/blog/:slug/edit`, "Edit", { slug: slug }))
+        ? t.div(HeaderLink(`/blog/:slug/edit`, "Edit", { slug: slug }))
         : null,
     Await(
       {
@@ -26,7 +26,7 @@ export function BlogSlug({ slug }: { slug: string }) {
         Loading: () => t.div("Loading..."),
         Error: (e) => t.div("Error:"),
       },
-      ({ data }) => RenderPost(data?.title ?? "", data?.content ?? "")
-    )
+      ({ data }) => RenderPost(data?.title ?? "", data?.content ?? ""),
+    ),
   );
 }
