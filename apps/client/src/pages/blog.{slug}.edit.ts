@@ -40,7 +40,7 @@ export function BlogEditor({ slug }: { slug: string }) {
   return t.form(
     {
       class:
-        "flex flex-direction:column jc:center ai:stretch h:inherit w:inherit m:auto px:4rem gap:2rem",
+        "flex flex-direction:column jc:center ai:stretch h:full w:inherit m:auto px:4rem pb:4rem gap:2rem",
     },
     t.div(
       { class: "w:100% flex jc:start gap:2rem" },
@@ -50,7 +50,7 @@ export function BlogEditor({ slug }: { slug: string }) {
         Toggle({
           size: 2,
           on: preview,
-        })
+        }),
       ),
       t.button(
         {
@@ -68,62 +68,63 @@ export function BlogEditor({ slug }: { slug: string }) {
                 navState: {},
                 query: {},
                 params: { slug },
-              })
+              }),
             );
           },
         },
-        "Save"
-      )
+        "Save",
+      ),
     ),
     t.div(
       { class: "flex flex-grow:1 jc:center" },
       t.div({ class: "flex-grow:1 h:100% w:100% max-w:1280px@lg" }, () =>
         preview.val
           ? RenderPost(title.val, content.val)
-          : Editor(title, content, thumbnail)
-      )
-    )
+          : Editor(title, content, thumbnail),
+      ),
+    ),
   );
 }
 
 function Editor(
   title: State<string>,
   content: State<string>,
-  thumbnail: State<string | null>
+  thumbnail: State<string | null>,
 ) {
   return t.div(
     {
-      class: "flex flex-direction:column jc:start h:inherit w:inherit gap:1rem",
+      class:
+        "flex flex-direction:column jc:start h:inherit w:inherit gap:1rem h:full",
     },
-    t.div(
-      { class: "flex jc:start ai:center gap:1rem" },
-      t.label({}, "Title: "),
-      t.input({
-        class: "b:1|solid|white px:.2rem",
-        value: title,
-        oninput: (e) => {
-          title.val = e.target.value;
-        },
-      })
-    ),
-    t.div(
-      { class: "flex jc:start ai:center gap:1rem" },
-      t.label({}, "Thumbnail: "),
-      t.input({
-        class: "b:1|solid|white px:.2rem",
-        value: thumbnail,
-        oninput: (e) => {
-          thumbnail.val = e.target.value;
-        },
-      })
-    ),
+    LineInput("Title: ", title),
+    LineInput("Thumbnail URL: ", thumbnail),
+    ContentInput("Content", content),
+  );
+}
+
+function LineInput(label: string, state: State<string | null>) {
+  return t.div(
+    { class: "flex jc:start ai:center gap:1rem" },
+    t.label({}, label),
+    t.input({
+      class: "b:1|solid|white px:.2rem w:30rem",
+      value: state,
+      oninput: (e) => {
+        state.val = e.target.value;
+      },
+    }),
+  );
+}
+
+function ContentInput(label: string, state: State<string>) {
+  return [
     t.label("Content"),
     t.textarea({
       class: "b:1|solid|white flex-grow:1 p:2rem",
-      value: content,
+      value: state,
       oninput: (e) => {
-        content.val = e.target.value;
+        state.val = e.target.value;
       },
-    })
-  );
+    }),
+  ];
 }
