@@ -7,26 +7,22 @@
 	import { siteTitle } from '@/const';
 	import { setMode, toggleMode } from 'mode-watcher';
 
-	let isDark = $state(false);
-	if (browser) {
-		isDark = localStorage.getItem('isDark') === 'true';
-	}
-
+	let isDark = $state(browser ? localStorage.getItem('isDark') === 'true' : false);
 	$effect(() => {
 		setMode(isDark ? 'dark' : 'light');
 		localStorage.setItem('isDark', isDark.toString());
 	});
 
-	let pagePath = $state($page.url.pathname);
 	const paths = [
 		['Home', '/'],
 		['About', '/about'],
-		['Posts', '/posts'],
+		['Blog', '/posts'],
 		['Tags', '/tags']
 	];
 	let pages = $derived(
 		paths.map(([name, path]) => {
-			let isActive = path === '/' ? path === pagePath : pagePath.startsWith(path);
+			let isActive =
+				path === '/' ? path === $page.url.pathname : $page.url.pathname.startsWith(path);
 			let variant: Props['variant'] = isActive ? 'default' : 'ghost';
 			return { name, path, variant };
 		})
@@ -35,14 +31,14 @@
 
 {#snippet NavLinks()}
 	<div class="flex-grow max-sm:hidden"><!--spacer  --></div>
-	<nav class="flex gap-2 max-sm:hidden">
+	<nav class="flex items-center justify-center gap-2 max-sm:hidden">
 		{#each pages as p, i (p.path)}
 			<Button
 				href={p.path}
 				size="lg"
 				variant={p.variant}
 				onclick={() => {
-					pagePath = p.path;
+					$page.url.pathname = p.path;
 				}}>{p.name}</Button
 			>
 		{/each}

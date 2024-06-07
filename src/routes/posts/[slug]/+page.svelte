@@ -1,0 +1,44 @@
+<script>
+	import 'highlight.js/styles/atom-one-dark.css';
+	let { data } = $props();
+	let { post, next, prev } = $derived(data);
+</script>
+
+<div class="flex flex-col items-center justify-center">
+	<div class="m-4 flex w-[1280px] flex-col gap-2 max-lg:w-[1024px]">
+		{#if post}
+			<div class=" w-full rounded-lg bg-card p-4 text-card-foreground">
+				<article class="prose dark:prose-invert prose-code:rounded-md prose-pre:bg-transparent">
+					<h1>{post?.title}</h1>
+					{@html post?.content}
+				</article>
+			</div>
+			<div class="flex w-full items-center justify-center">
+				{#if next}
+					{@render NeighborPost(next, post.id)}
+				{/if}
+				<div class="flex-grow"></div>
+				{#if prev}
+					{@render NeighborPost(prev, post.id)}
+				{/if}
+			</div>
+		{/if}
+		{#if !post}
+			<div class="w-full rounded-lg bg-card p-4 text-card-foreground">
+				<h1>Not found</h1>
+			</div>
+		{/if}
+	</div>
+</div>
+
+{#snippet NeighborPost(post, currentId)}
+	<a href={`/posts/${post?.slug}`} data-sveltekit-preload-data
+		><div class="prose rounded-lg bg-card p-4 text-card-foreground dark:prose-invert">
+			<h3>
+				{#if post.id > currentId}←Next:{/if}
+				{post?.title}
+				{#if post.id <= currentId}:Prev→{/if}
+			</h3>
+		</div>
+	</a>
+{/snippet}
