@@ -13,7 +13,7 @@ CREATE TABLE `posts` (
 	`content` text,
 	`thumbnail` text,
 	`draft` integer DEFAULT true NOT NULL,
-	`published_at` integer DEFAULT (current_timestamp) NOT NULL
+	`published_at` integer DEFAULT (strftime('%s', 'now')) NOT NULL
 );
 --> statement-breakpoint
 CREATE TABLE `tags` (

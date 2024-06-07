@@ -12,22 +12,27 @@
 		<Card.Root>
 			<Card.Header>
 				<Card.Title>{p.title}</Card.Title>
-				<Card.Description>Draft: {p.draft}</Card.Description>
+				<Card.Description>
+					<time class="block">{p.published_at.toLocaleDateString()}</time>
+					<time class="block">{p.published_at.toLocaleTimeString()}</time>
+				</Card.Description>
 			</Card.Header>
 			<Card.Content>
-				<Image
-					src={p.thumbnail || avatarImage}
-					alt={p.title || 'no title'}
-					layout="fixed"
-					height={360}
-					width={640}
-				/>
+				<div class="flex flex-col items-center justify-center">
+					<Image
+						src={p.thumbnail || avatarImage}
+						alt={p.title || 'no title'}
+						layout="fixed"
+						width={360}
+						height={240}
+					/>
+				</div>
 			</Card.Content>
 		</Card.Root>
 	</a>
 {/snippet}
 
-<div class="m-auto grid w-[1080px] gap-4 pt-10 sm:grid-cols-2">
+<div class="m-auto grid max-w-[1080px] grid-cols-1 gap-4 px-4 pt-10 lg:grid-cols-2">
 	{#each data.posts ?? [] as post (post.id)}
 		{@render PostCard(post)}
 	{/each}

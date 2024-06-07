@@ -41,7 +41,7 @@ export async function load({ params, platform }) {
 		marked.parse(_post.content ?? '', { async: true }),
 		nextPrev
 	]);
-	const post = { ..._post, content: renderedContent };
+	const post = { ..._post, html: renderedContent, description: _post.content.slice(0, 200) };
 
 	return { post, next, prev };
 }

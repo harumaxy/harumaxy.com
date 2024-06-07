@@ -1,7 +1,7 @@
 {
   "version": "6",
   "dialect": "sqlite",
-  "id": "68c33719-67a3-44b2-bd1d-9261d8413840",
+  "id": "30f5f85a-a292-4a5a-a576-b2bba30fa15e",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
     "post_tag": {
@@ -114,7 +114,7 @@
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false,
-          "default": "(current_timestamp)"
+          "default": "(strftime('%s', 'now'))"
         }
       },
       "indexes": {

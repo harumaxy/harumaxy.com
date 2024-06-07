@@ -1,7 +1,9 @@
-<svelte:head>
-	<title>Home</title>
-	<meta name="description" content="Svelte demo app" />
-</svelte:head>
+<script>
+	import Ogp from '@/components/OGP.svelte';
+	import { avatarImage } from '@/const';
+</script>
+
+<Ogp title="Home" description="ホームページ" image={avatarImage} />
 
 <section class="flex h-full items-center justify-center">
 	<div>
@@ -10,10 +12,3 @@
 		</h1>
 	</div>
 </section>
-
-<style>
-	canvas {
-		width: 100%;
-		height: 100%;
-	}
-</style>

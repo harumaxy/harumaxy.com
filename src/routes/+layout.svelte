@@ -4,7 +4,7 @@
 	import { ModeWatcher } from 'mode-watcher';
 </script>
 
-<div class="app flex h-dvh flex-col">
+<div class="app flex h-dvh flex-col px-4">
 	<Header></Header>
 	<ModeWatcher />
 

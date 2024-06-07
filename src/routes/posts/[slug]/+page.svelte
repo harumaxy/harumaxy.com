@@ -1,19 +1,31 @@
 <script>
+	import Ogp from '@/components/OGP.svelte';
+	import { avatarImage } from '@/const';
 	import 'highlight.js/styles/atom-one-dark.css';
 	let { data } = $props();
 	let { post, next, prev } = $derived(data);
 </script>
 
 <div class="flex flex-col items-center justify-center">
-	<div class="m-4 flex w-[1280px] flex-col gap-2 max-lg:w-[1024px]">
+	<div class="m-4 flex w-full max-w-[1280px] flex-col gap-2 px-4 max-lg:max-w-[1024px]">
 		{#if post}
+			<Ogp
+				title={post.title ?? ''}
+				description={post.description ?? ''}
+				image={post.thumbnail ?? avatarImage}
+			/>
 			<div class=" w-full rounded-lg bg-card p-4 text-card-foreground">
 				<article class="prose dark:prose-invert prose-code:rounded-md prose-pre:bg-transparent">
-					<h1>{post?.title}</h1>
-					{@html post?.content}
+					<div>
+						<h1 style="margin: auto;">{post.title}</h1>
+						<time>{post.published_at.toLocaleDateString()}</time>
+						<time>{post.published_at.toLocaleTimeString()}</time>
+					</div>
+
+					{@html post.content}
 				</article>
 			</div>
-			<div class="flex w-full items-center justify-center">
+			<div class="flex w-full items-center justify-center gap-2 max-md:flex-col">
 				{#if next}
 					{@render NeighborPost(next, post.id)}
 				{/if}
