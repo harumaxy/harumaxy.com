@@ -1,4 +1,5 @@
-import { sqliteTable, integer, text } from 'drizzle-orm/sqlite-core';
+import { sql, relations } from 'drizzle-orm';
+import { sqliteTable, integer, text, primaryKey } from 'drizzle-orm/sqlite-core';
 
 export const posts = sqliteTable('posts', {
 	id: integer('id').primaryKey({ autoIncrement: true }),
@@ -6,13 +7,36 @@ export const posts = sqliteTable('posts', {
 	title: text('title'),
 	content: text('content'),
 	thumbnail: text('thumbnail'),
-	draft: integer('draft', { mode: 'boolean' }).notNull().default(true)
+	draft: integer('draft', { mode: 'boolean' }).notNull().default(true),
+	published_at: integer('published_at', { mode: 'timestamp' })
+		.notNull()
+		.default(sql`(current_timestamp)`)
 });
 
 export const tags = sqliteTable('tags', {
 	id: integer('id'),
 	name: text('name').notNull()
 });
+
+export const postTag = sqliteTable(
+	'post_tag',
+	{
+		post_id: integer('post_id')
+			.notNull()
+			.references(() => posts.id),
+		tag_id: integer('tag_id')
+			.notNull()
+			.references(() => tags.id)
+	},
+	(t) => ({
+		pk: primaryKey({ columns: [t.post_id, t.tag_id] })
+	})
+);
+
+export const postTagRelations = relations(postTag, ({ one }) => ({
+	post: one(posts, { fields: [postTag.post_id], references: [posts.id] }),
+	tag: one(tags, { fields: [postTag.tag_id], references: [tags.id] })
+}));
 
 export type Post = typeof posts.$inferSelect;
 export type CreatePost = typeof posts.$inferInsert;

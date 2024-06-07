@@ -1,7 +1,67 @@
 {
   "version": "6",
   "dialect": "sqlite",
+  "id": "68c33719-67a3-44b2-bd1d-9261d8413840",
+  "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
+    "post_tag": {
+      "name": "post_tag",
+      "columns": {
+        "post_id": {
+          "name": "post_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "tag_id": {
+          "name": "tag_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "post_tag_post_id_posts_id_fk": {
+          "name": "post_tag_post_id_posts_id_fk",
+          "tableFrom": "post_tag",
+          "tableTo": "posts",
+          "columnsFrom": [
+            "post_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "post_tag_tag_id_tags_id_fk": {
+          "name": "post_tag_tag_id_tags_id_fk",
+          "tableFrom": "post_tag",
+          "tableTo": "tags",
+          "columnsFrom": [
+            "tag_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {
+        "post_tag_post_id_tag_id_pk": {
+          "columns": [
+            "post_id",
+            "tag_id"
+          ],
+          "name": "post_tag_post_id_tag_id_pk"
+        }
+      },
+      "uniqueConstraints": {}
+    },
     "posts": {
       "name": "posts",
       "columns": {
@@ -47,6 +107,14 @@
           "notNull": true,
           "autoincrement": false,
           "default": true
+        },
+        "published_at": {
+          "name": "published_at",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "(current_timestamp)"
         }
       },
       "indexes": {
@@ -88,9 +156,11 @@
   },
   "enums": {},
   "_meta": {
+    "schemas": {},
     "tables": {},
     "columns": {}
   },
-  "id": "f44fbeeb-f276-417d-9750-46df7cb07424",
-  "prevId": "00000000-0000-0000-0000-000000000000"
+  "internal": {
+    "indexes": {}
+  }
 }

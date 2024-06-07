@@ -1,12 +1,12 @@
 {
-  "version": "5",
+  "version": "7",
   "dialect": "sqlite",
   "entries": [
     {
       "idx": 0,
-      "version": "5",
-      "when": 1711264852290,
-      "tag": "0000_robust_wither",
+      "version": "6",
+      "when": 1717737582983,
+      "tag": "0000_calm_silver_samurai",
       "breakpoints": true
     }
   ]
