@@ -10,7 +10,8 @@ export const posts = sqliteTable('posts', {
 	draft: integer('draft', { mode: 'boolean' }).notNull().default(true),
 	published_at: integer('published_at', { mode: 'timestamp' })
 		.notNull()
-		.default(sql`(strftime('%s', 'now'))`)
+		.default(sql`(strftime('%s', 'now'))`),
+	description: text('description')
 });
 
 export const tags = sqliteTable('tags', {
