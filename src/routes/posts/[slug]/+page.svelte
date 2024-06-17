@@ -6,6 +6,12 @@
 	let { post, next, prev } = $derived(data);
 </script>
 
+<svelte:head>
+	<title>{post?.title}</title>
+	<meta name="description" content={post?.description} />
+	<meta charset="utf-8" />
+</svelte:head>
+
 <div class="flex flex-col items-center justify-center">
 	<div class="m-4 flex w-full max-w-[1280px] flex-col gap-2 px-4 max-lg:max-w-[1024px]">
 		{#if post}
@@ -14,6 +20,7 @@
 				description={post.description ?? ''}
 				image={post.thumbnail ?? avatarImage}
 			/>
+
 			<div class=" w-full rounded-lg bg-card p-4 text-card-foreground">
 				<article class="prose dark:prose-invert prose-code:rounded-md prose-pre:bg-transparent">
 					<div>
