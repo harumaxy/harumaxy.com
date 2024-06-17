@@ -7,6 +7,10 @@
 	export let data: PageData;
 </script>
 
+<svelte:head>
+	<title>Blog</title>
+</svelte:head>
+
 {#snippet PostCard(p: Post)}
 	<a href={`/posts/${p.slug}`}>
 		<Card.Root>

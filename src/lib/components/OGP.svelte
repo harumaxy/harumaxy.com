@@ -9,7 +9,6 @@
 </script>
 
 <svelte:head>
-	<title>About</title>
 	<meta name="og:title" content={title} />
 	<meta name="og:description" content={description} />
 	<meta name="og:image" content={image} />

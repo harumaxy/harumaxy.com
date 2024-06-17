@@ -6,6 +6,9 @@
 </script>
 
 <Ogp title="About" description="自己紹介" image={avatarImage} />
+<svelte:head>
+	<title>About</title>
+</svelte:head>
 
 <div class="flex h-full w-full items-center justify-center">
 	<Card.Root
