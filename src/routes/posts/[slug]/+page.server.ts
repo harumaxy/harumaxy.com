@@ -35,13 +35,16 @@ export async function load({ params, platform }) {
 			}
 		})
 	);
+	marked.setOptions({
+		gfm: true
+	});
 
 	// Do parallel tasks
 	const [renderedContent, [next, prev]] = await Promise.all([
 		marked.parse(_post.content ?? '', { async: true }),
 		nextPrev
 	]);
-	const post = { ..._post, content: renderedContent, description: _post.content.slice(0, 80) };
+	const post = { ..._post, content: renderedContent, description: _post.content };
 
 	return { post, next, prev };
 }

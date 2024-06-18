@@ -22,7 +22,9 @@
 			/>
 
 			<div class=" w-full rounded-lg bg-card p-4 text-card-foreground">
-				<article class="prose dark:prose-invert prose-code:rounded-md prose-pre:bg-transparent">
+				<article
+					class="prose m-auto p-2 dark:prose-invert prose-code:rounded-md prose-pre:bg-transparent"
+				>
 					<div>
 						<h1 style="margin: auto;">{post.title}</h1>
 						<time>{post.published_at.toLocaleDateString()}</time>
