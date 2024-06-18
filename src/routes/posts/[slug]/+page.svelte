@@ -23,7 +23,7 @@
 
 			<div class=" w-full rounded-lg bg-card p-4 text-card-foreground">
 				<article
-					class="prose m-auto p-2 dark:prose-invert prose-code:rounded-md prose-pre:bg-transparent"
+					class="p=4 prose m-auto w-full max-w-none p-8 dark:prose-invert prose-code:rounded-md prose-pre:bg-transparent max-sm:p-0"
 				>
 					<div>
 						<h1 style="margin: auto;">{post.title}</h1>
