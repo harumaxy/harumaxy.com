@@ -52,9 +52,12 @@ export async function POST({ platform, request }) {
 				id: schemas.tags.id
 			})
 			.onConflictDoNothing({ target: schemas.tags.name });
+
 		tagIds = await db.query.tags.findMany({
-			where: (tags, { inArray }) => inArray(tags.name, tags as unknown as []),
-			columns: { id: true }
+			where: (tags_, { inArray }) => inArray(tags_.name, tags),
+			columns: {
+				id: true
+			}
 		});
 	}
 
