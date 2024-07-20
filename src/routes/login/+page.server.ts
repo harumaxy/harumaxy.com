@@ -34,7 +34,7 @@ export const actions: Actions = {
 			return fail(400, { form });
 		}
 		const { email, password } = form.data;
-		if (email === 'a@b.com' && password === 'password') {
+		if (email === process.env.EMAIL && password === process.env.PASSWORD) {
 			event.cookies.set('auth', JSON.stringify({ email, createdAt: Date.now() / 1000 }), {
 				path: '/',
 				expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 7),

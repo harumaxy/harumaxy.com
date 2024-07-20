@@ -28,6 +28,11 @@ const makePostSchema = z.object({
 });
 
 export async function POST({ platform, request }) {
+	const bearerToken = request.headers.get('Authorization')?.split(' ')[1];
+	if (!bearerToken || bearerToken !== process.env?.['API_KEY']) {
+		return new Response('Unauthorized', { status: 401 });
+	}
+
 	const reqBody = makePostSchema.parse(await request.text());
 	const parsed = matter(reqBody);
 	const content_ = parsed.content.replace(/^\n+/, '');
