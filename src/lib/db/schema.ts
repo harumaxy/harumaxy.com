@@ -14,10 +14,18 @@ export const posts = sqliteTable('posts', {
 	description: text('description')
 });
 
+export const postsRelations = relations(posts, ({ many }) => ({
+	postTags: many(postTag)
+}));
+
 export const tags = sqliteTable('tags', {
-	id: integer('id'),
-	name: text('name').notNull()
+	id: integer('id').primaryKey({ autoIncrement: true }),
+	name: text('name').notNull().unique()
 });
+
+export const tagsRelations = relations(tags, ({ many }) => ({
+	postTags: many(postTag)
+}));
 
 export const postTag = sqliteTable(
 	'post_tag',
