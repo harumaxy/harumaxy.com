@@ -17,3 +17,4 @@ vite.config.ts.timestamp-*
 
 memo.*
 blog/.temp
+.envrc

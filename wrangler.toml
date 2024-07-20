@@ -3,6 +3,7 @@ name = "harumaxy-com"
 compatibility_date = "2024-06-03"
 pages_build_output_dir = ".svelte-kit/cloudflare"
 
+
 [[d1_databases]]
 binding = "DB"                                       # i.e. available in your Worker on env.DB
 database_name = "harumaxy-com-db"
