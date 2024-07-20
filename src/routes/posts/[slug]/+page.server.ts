@@ -2,11 +2,14 @@ import { makeDB } from '@/db/client.js';
 import { Marked } from 'marked';
 import { markedHighlight } from 'marked-highlight';
 import hljs from 'highlight.js';
+// @ts-expect-error no types
+import gdscript from '@exercism/highlightjs-gdscript';
 
 export async function load({ params, platform }) {
 	if (!params.slug) return;
 	if (!platform?.env.DB) return;
 	const db = makeDB(platform.env.DB);
+	hljs.registerLanguage('gdscript', gdscript);
 
 	// Get post
 	const _post = await db.query.posts.findFirst({

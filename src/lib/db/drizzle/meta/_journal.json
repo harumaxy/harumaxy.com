@@ -5,29 +5,8 @@
     {
       "idx": 0,
       "version": "6",
-      "when": 1717738764521,
-      "tag": "0000_panoramic_marten_broadcloak",
-      "breakpoints": true
-    },
-    {
-      "idx": 1,
-      "version": "6",
-      "when": 1718586480647,
-      "tag": "0001_oval_mephistopheles",
-      "breakpoints": true
-    },
-    {
-      "idx": 2,
-      "version": "6",
-      "when": 1721456789722,
-      "tag": "0002_certain_zombie",
-      "breakpoints": true
-    },
-    {
-      "idx": 3,
-      "version": "6",
-      "when": 1721457557857,
-      "tag": "0003_stiff_tomorrow_man",
+      "when": 1721468795448,
+      "tag": "0000_moaning_rumiko_fujikawa",
       "breakpoints": true
     }
   ]

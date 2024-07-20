@@ -53,6 +53,7 @@ export async function POST({ platform, request }) {
 			})
 			.onConflictDoNothing({ target: schemas.tags.name });
 	}
+
 	const [postId] = await db
 		.insert(schemas.posts)
 		.values([

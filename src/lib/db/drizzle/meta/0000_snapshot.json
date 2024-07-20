@@ -1,7 +1,7 @@
 {
   "version": "6",
   "dialect": "sqlite",
-  "id": "30f5f85a-a292-4a5a-a576-b2bba30fa15e",
+  "id": "75e52bf4-4c2a-4afa-a96d-aafefd828c9f",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
     "post_tag": {
@@ -115,6 +115,13 @@
           "notNull": true,
           "autoincrement": false,
           "default": "(strftime('%s', 'now'))"
+        },
+        "description": {
+          "name": "description",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
         }
       },
       "indexes": {
@@ -136,9 +143,9 @@
         "id": {
           "name": "id",
           "type": "integer",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": true
         },
         "name": {
           "name": "name",
@@ -148,7 +155,15 @@
           "autoincrement": false
         }
       },
-      "indexes": {},
+      "indexes": {
+        "tags_name_unique": {
+          "name": "tags_name_unique",
+          "columns": [
+            "name"
+          ],
+          "isUnique": true
+        }
+      },
       "foreignKeys": {},
       "compositePrimaryKeys": {},
       "uniqueConstraints": {}

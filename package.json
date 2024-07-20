@@ -49,6 +49,7 @@
   },
   "type": "module",
   "dependencies": {
+    "@exercism/highlightjs-gdscript": "^0.0.1",
     "@unpic/svelte": "^0.0.53",
     "better-sqlite3": "^11.0.0",
     "bits-ui": "^0.21.10",

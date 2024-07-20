@@ -7,6 +7,6 @@ pages_build_output_dir = ".svelte-kit/cloudflare"
 [[d1_databases]]
 binding = "DB"                                       # i.e. available in your Worker on env.DB
 database_name = "harumaxy-com-db"
-database_id = "cab1a661-f5b0-4384-bbbb-925598b30f97"
+database_id = "12cc0df2-7001-4057-a391-62243308883b"
 migrations_dir = "./src/lib/db/drizzle"
 preview_database_id = "DB"

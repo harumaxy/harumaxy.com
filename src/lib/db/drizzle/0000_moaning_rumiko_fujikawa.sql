@@ -13,12 +13,14 @@ CREATE TABLE `posts` (
 	`content` text,
 	`thumbnail` text,
 	`draft` integer DEFAULT true NOT NULL,
-	`published_at` integer DEFAULT (strftime('%s', 'now')) NOT NULL
+	`published_at` integer DEFAULT (strftime('%s', 'now')) NOT NULL,
+	`description` text
 );
 --> statement-breakpoint
 CREATE TABLE `tags` (
-	`id` integer,
+	`id` integer PRIMARY KEY AUTOINCREMENT NOT NULL,
 	`name` text NOT NULL
 );
 --> statement-breakpoint
-CREATE UNIQUE INDEX `posts_slug_unique` ON `posts` (`slug`);
+CREATE UNIQUE INDEX `posts_slug_unique` ON `posts` (`slug`);--> statement-breakpoint
+CREATE UNIQUE INDEX `tags_name_unique` ON `tags` (`name`);
