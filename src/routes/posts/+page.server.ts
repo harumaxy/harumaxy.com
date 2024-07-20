@@ -90,4 +90,6 @@ export async function POST({ platform, request }) {
 			}))
 		);
 	});
+
+	return new Response('Post created', { status: 200 });
 }
