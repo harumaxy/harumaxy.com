@@ -16,7 +16,7 @@
 		</Card.Header>
 		<Card.Content>
 			<div class="flex gap-2">
-				{#each data.tags as tag (tag.id)}
+				{#each data?.tags ?? [] as tag (tag.id)}
 					<Badge class="text-xl" href={`/posts?tag=${tag.name}`}>
 						{tag.name}
 					</Badge>
