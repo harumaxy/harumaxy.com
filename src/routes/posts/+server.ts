@@ -4,6 +4,10 @@ import { z } from 'zod';
 import matter from 'gray-matter';
 import { eq } from 'drizzle-orm';
 
+export function GET() {
+	return new Response('Method not allowed', { status: 405 });
+}
+
 export async function POST({ platform, request }) {
 	const bearerToken = request.headers.get('Authorization')?.split(' ')[1];
 	if (!bearerToken || bearerToken !== process.env?.['API_KEY']) {
