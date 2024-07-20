@@ -3,6 +3,7 @@
 	import { avatarImage } from '@/const';
 	import 'highlight.js/styles/atom-one-dark.css';
 	let { data } = $props();
+
 	let { post, next, prev } = $derived(data);
 </script>
 

@@ -43,15 +43,19 @@ export async function POST({ platform, request }) {
 	if (!d1) return new Response('No DB', { status: 500 });
 	const db = makeDB(d1);
 
-	let newTagIds: { id: number }[] = [];
+	let tagIds: { id: number }[] = [];
 	if (tags.length > 0) {
-		newTagIds = await db
+		await db
 			.insert(schemas.tags)
 			.values(tags.map((name) => ({ name })))
 			.returning({
 				id: schemas.tags.id
 			})
 			.onConflictDoNothing({ target: schemas.tags.name });
+		tagIds = await db.query.tags.findMany({
+			where: (tags, { inArray }) => inArray(tags.name, tags as unknown as []),
+			columns: { id: true }
+		});
 	}
 
 	const [postId] = await db
@@ -81,10 +85,11 @@ export async function POST({ platform, request }) {
 			}
 		});
 
-	if (newTagIds.length > 0) {
+	if (tagIds.length > 0) {
 		await db.delete(schemas.postTag).where(eq(schemas.postTag.post_id, postId.id));
+
 		await db.insert(schemas.postTag).values(
-			newTagIds.map(({ id }) => ({
+			tagIds.map(({ id }) => ({
 				post_id: postId.id,
 				tag_id: id
 			}))

@@ -1,31 +1,39 @@
 <script lang="ts">
 	import * as Card from '@/components/ui/card';
 	import type { PageData } from './$types';
-	import type { Post } from '$lib/db/schema';
+	import type { Post, Tag } from '$lib/db/schema';
 	import { avatarImage } from '@/const';
 	import { Image } from '@unpic/svelte';
-	export let data: PageData;
+	import type { PostListItem } from './+page.server';
+	import Badge from '@/components/ui/badge/badge.svelte';
+	import { page } from '$app/stores';
+	import { goto } from '$app/navigation';
+	export let data: { rows: PostListItem[] };
 </script>
 
 <svelte:head>
 	<title>Blog</title>
 </svelte:head>
 
-{#snippet PostCard(p: Post)}
-	<a href={`/posts/${p.slug}`}>
+{#snippet PostCard(post: Post, tags: Tag[])}
+	<a href={`/posts/${post.slug}`}>
 		<Card.Root>
 			<Card.Header>
-				<Card.Title>{p.title}</Card.Title>
-				<Card.Description>
-					<time class="block">{p.published_at.toLocaleDateString()}</time>
-					<time class="block">{p.published_at.toLocaleTimeString()}</time>
+				<Card.Title>{post.title}</Card.Title>
+				<Card.Description class="flex flex-col gap-1 py-2">
+					<div class="flex gap-1">
+						{#each tags as tag (tag.id)}
+							<Badge class="text-sm" href={`/posts?tag=${tag.name}`}>{tag.name}</Badge>
+						{/each}
+					</div>
+					<time class="block">{post.published_at.toLocaleDateString()}</time>
 				</Card.Description>
 			</Card.Header>
 			<Card.Content>
 				<div class="flex flex-col items-center justify-center">
 					<Image
-						src={p.thumbnail || avatarImage}
-						alt={p.title || 'no title'}
+						src={post.thumbnail || avatarImage}
+						alt={post.title || 'no title'}
 						layout="fixed"
 						width={360}
 						height={240}
@@ -37,7 +45,7 @@
 {/snippet}
 
 <div class="m-auto grid max-w-[1080px] grid-cols-1 gap-4 px-4 pt-10 lg:grid-cols-2">
-	{#each data.posts ?? [] as post (post.id)}
-		{@render PostCard(post)}
+	{#each data.rows as row (row.post.id)}
+		{@render PostCard(row.post, row.tags)}
 	{/each}
 </div>
