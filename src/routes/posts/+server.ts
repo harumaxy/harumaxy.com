@@ -69,7 +69,7 @@ export async function POST({ platform, request }) {
 				title,
 				thumbnail,
 				draft,
-				published_at: draft ? published_at : new Date(),
+				published_at: draft ? undefined : published_at ?? new Date(),
 				description,
 				content
 			}
