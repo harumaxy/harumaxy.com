@@ -34,14 +34,7 @@
 {#snippet NavLinks()}
 	<nav class="flex items-center justify-center gap-2">
 		{#each pages as p, i (p.path)}
-			<Button
-				href={p.path}
-				size="lg"
-				variant={p.variant}
-				onclick={() => {
-					$page.url.pathname = p.path;
-				}}>{p.name}</Button
-			>
+			<Button href={p.path} size="lg" variant={p.variant}>{p.name}</Button>
 		{/each}
 	</nav>
 {/snippet}

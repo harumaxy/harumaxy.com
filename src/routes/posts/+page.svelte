@@ -5,7 +5,10 @@
 	import { Image } from '@unpic/svelte';
 	import type { PostListItem } from './+page.server';
 	import Badge from '@/components/ui/badge/badge.svelte';
-	export let data: { rows: PostListItem[] };
+	import { page } from '$app/stores';
+
+	let { data }: { data: { rows: PostListItem[] } } = $props();
+	let queryTag = $derived($page.url?.searchParams.get('tag'));
 </script>
 
 <svelte:head>
@@ -20,7 +23,10 @@
 				<Card.Description class="flex flex-col gap-1 py-2">
 					<div class="flex min-h-7 gap-1">
 						{#each tags as tag (tag.id)}
-							<Badge class="text-sm" href={`/posts?tag=${tag.name}`}>{tag.name}</Badge>
+							<Badge
+								class={`text-sm ${tag.name === queryTag ? 'bg-green-500' : ''}`}
+								href={`/posts?tag=${tag.name}`}>{tag.name}</Badge
+							>
 						{/each}
 					</div>
 					<time class="block">{post.published_at.toLocaleDateString()}</time>
