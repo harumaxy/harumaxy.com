@@ -14,7 +14,10 @@ const makePostSchema = z.object({
 	content: z.string(),
 	thumbnail: z.string().nullable(),
 	draft: z.boolean(),
-	published_at: z.string().transform((v) => new Date(v)),
+	published_at: z
+		.string()
+		.transform((v) => new Date(v))
+		.nullish(),
 	description: z.string().nullish(),
 	tags: z.array(z.string())
 });
@@ -84,7 +87,8 @@ export async function POST({ platform, request }) {
 				thumbnail,
 				draft,
 				description,
-				content
+				content,
+				published_at: published_at ?? undefined
 			}
 		});
 
