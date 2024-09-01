@@ -1,13 +1,10 @@
 <script lang="ts">
 	import * as Card from '@/components/ui/card';
-	import type { PageData } from './$types';
 	import type { Post, Tag } from '$lib/db/schema';
 	import { avatarImage } from '@/const';
 	import { Image } from '@unpic/svelte';
 	import type { PostListItem } from './+page.server';
 	import Badge from '@/components/ui/badge/badge.svelte';
-	import { page } from '$app/stores';
-	import { goto } from '$app/navigation';
 	export let data: { rows: PostListItem[] };
 </script>
 
@@ -21,7 +18,7 @@
 			<Card.Header>
 				<Card.Title>{post.title}</Card.Title>
 				<Card.Description class="flex flex-col gap-1 py-2">
-					<div class="flex gap-1">
+					<div class="flex min-h-7 gap-1">
 						{#each tags as tag (tag.id)}
 							<Badge class="text-sm" href={`/posts?tag=${tag.name}`}>{tag.name}</Badge>
 						{/each}
