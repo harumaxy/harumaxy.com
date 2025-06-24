@@ -1,15 +1,31 @@
 ---
-title: Expressive Code Example
-published: 2024-04-10
-description: How code blocks look in Markdown using Expressive Code.
+title: Example
+published: 2022-07-01
+tags: [Markdown, Blogging, Demo]
+category: Examples
+draft: true
+---
+
+
+## This Article is a Draft
+
+This article is currently in a draft state and is not published. Therefore, it will not be visible to the general audience. The content is still a work in progress and may require further editing and review.
+
+When the article is ready for publication, you can update the "draft" field to "false" in the Frontmatter:
+
+```markdown
+---
+title: Draft Example
+published: 2024-01-11T04:40:26.381Z
 tags: [Markdown, Blogging, Demo]
 category: Examples
 draft: false
 ---
 
-Here, we'll explore how code blocks look using [Expressive Code](https://expressive-code.com/). The provided examples are based on the official documentation, which you can refer to for further details.
 
 ## Expressive Code
+
+Here, we'll explore how code blocks look using [Expressive Code](https://expressive-code.com/). The provided examples are based on the official documentation, which you can refer to for further details.
 
 ### Syntax Highlighting
 
@@ -309,3 +325,102 @@ console.log('Sorry, do you know what line I am on?')
 console.log('Greetings from line 5!')
 console.log('I am on line 6')
 ```
+
+
+
+## GitHub Repository Cards
+You can add dynamic cards that link to GitHub repositories, on page load, the repository information is pulled from the GitHub API. 
+
+::github{repo="Fabrizz/MMM-OnSpotify"}
+
+Create a GitHub repository card with the code `::github{repo="<owner>/<repo>"}`.
+
+```markdown
+::github{repo="saicaca/fuwari"}
+```
+
+## Admonitions
+
+Following types of admonitions are supported: `note` `tip` `important` `warning` `caution`
+
+:::note
+Highlights information that users should take into account, even when skimming.
+:::
+
+:::tip
+Optional information to help a user be more successful.
+:::
+
+:::important
+Crucial information necessary for users to succeed.
+:::
+
+:::warning
+Critical content demanding immediate user attention due to potential risks.
+:::
+
+:::caution
+Negative potential consequences of an action.
+:::
+
+### Basic Syntax
+
+```markdown
+:::note
+Highlights information that users should take into account, even when skimming.
+:::
+
+:::tip
+Optional information to help a user be more successful.
+:::
+```
+
+### Custom Titles
+
+The title of the admonition can be customized.
+
+:::note[MY CUSTOM TITLE]
+This is a note with a custom title.
+:::
+
+```markdown
+:::note[MY CUSTOM TITLE]
+This is a note with a custom title.
+:::
+```
+
+### GitHub Syntax
+
+> [!TIP]
+> [The GitHub syntax](https://github.com/orgs/community/discussions/16925) is also supported.
+
+```
+> [!NOTE]
+> The GitHub syntax is also supported.
+
+> [!TIP]
+> The GitHub syntax is also supported.
+```
+
+## Video
+
+
+Just copy the embed code from YouTube or other platforms, and paste it in the markdown file.
+
+```yaml
+---
+title: Include Video in the Post
+published: 2023-10-19
+// ...
+---
+
+<iframe width="100%" height="468" src="https://www.youtube.com/embed/5gIf0_xpFPI?si=N1WTorLKL0uwLsU_" title="YouTube video player" frameborder="0" allowfullscreen></iframe>
+```
+
+## YouTube
+
+<iframe width="100%" height="468" src="https://www.youtube.com/embed/5gIf0_xpFPI?si=N1WTorLKL0uwLsU_" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+## Bilibili
+
+<iframe width="100%" height="468" src="//player.bilibili.com/player.html?bvid=BV1fK4y1s7Qf&p=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
