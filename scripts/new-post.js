@@ -42,9 +42,15 @@ if (!fs.existsSync(dirPath)) {
     fs.mkdirSync(dirPath, { recursive: true })
 }
 
+const today = getDate()
+const thisYear = today.split("-")[0]
+if (!thisYear){
+  throw new Error("Failed to get the current year")
+}
+
 const content = `---
 title: ${args[0]}
-published: ${getDate()}
+published: ${today}
 description: ''
 image: ''
 tags: []
@@ -54,6 +60,6 @@ lang: ''
 ---
 `
 
-fs.writeFileSync(path.join(targetDir, fileName), content)
+fs.writeFileSync(path.join(targetDir, thisYear, `${today}.${fileName}`), content)
 
 console.log(`Post ${fullPath} created`)
