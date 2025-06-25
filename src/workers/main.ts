@@ -1,35 +1,48 @@
+import { zValidator } from "@hono/zod-validator";
 import { Hono } from "hono";
+import { z } from "zod";
+
+const pathValidator = zValidator(
+	"param",
+	z.object({
+		slug: z.string(),
+	}),
+);
+
+const queryValidator = zValidator(
+	"query",
+	z.object({
+		userUuid: z.string(),
+	}),
+);
+
+const bodyValidator = zValidator(
+	"json",
+	z.object({
+		userUuid: z.string(),
+	}),
+);
 
 type Bindings = {
 	DB: D1Database;
 };
 
 const likesApp = new Hono<{ Bindings: Bindings }>()
-	.get(":slug", async (c) => {
-		const slug = c.req.param("slug");
-		const userUuid = c.req.query("userUuid");
-		if (!slug || !userUuid) {
-			return c.json({ error: "Slug and userUuid are required" }, 400);
-		}
-
+	.get(":slug", pathValidator, queryValidator, async (c) => {
+		const { slug } = c.req.valid("param");
+		const { userUuid } = c.req.valid("query");
 		const likes = await countLikes(c.env.DB, { slug, userUuid });
 		return c.json(likes);
 	})
-	.post(":slug", async (c) => {
-		const slug = c.req.param("slug");
-		const { userUuid } = await c.req.json();
-		if (!slug || !userUuid) {
-			return c.json({ error: "Slug and userUuid are required" }, 400);
-		}
+	.post(":slug", pathValidator, bodyValidator, async (c) => {
+		const { slug } = c.req.valid("param");
+		const { userUuid } = c.req.valid("json");
 		const newLikes = await like(c.env.DB, { slug, userUuid });
 		return c.json(newLikes);
 	})
-	.delete(":slug", async (c) => {
-		const slug = c.req.param("slug");
-		const { userUuid } = await c.req.json();
-		if (!slug || !userUuid) {
-			return c.json({ error: "Slug and userUuid are required" }, 400);
-		}
+	.delete(":slug", pathValidator, bodyValidator, async (c) => {
+		const { slug } = c.req.valid("param");
+		const { userUuid } = c.req.valid("json");
 		const newLikes = await unlike(c.env.DB, { slug, userUuid });
 		return c.json(newLikes);
 	});
@@ -39,7 +52,10 @@ interface LikesQueryParam {
 	userUuid: string;
 }
 
-async function countLikes(db: D1Database, { slug, userUuid }: LikesQueryParam) {
+export async function countLikes(
+	db: D1Database,
+	{ slug, userUuid }: LikesQueryParam,
+) {
 	const result = await db
 		.prepare(
 			`SELECT
@@ -85,3 +101,5 @@ const app = new Hono<{ Bindings: Bindings }>().route("/api/likes", likesApp);
 export default {
 	fetch: app.fetch,
 };
+
+export type AppType = typeof app;
