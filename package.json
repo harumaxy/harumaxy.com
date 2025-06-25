@@ -15,7 +15,10 @@
     "lint": "biome check --write ./src",
     "preinstall": "npx only-allow pnpm",
     "login": "wrangler login",
-    "deploy": "wrangler deploy"
+    "deploy": "wrangler deploy",
+    "typegen": "wrangler types src/worker-configuration.d.ts",
+    "migrate:local": "pnpm wrangler d1 execute harumaxy-com-db --file scripts/make-like-table.sql",
+    "dev:worker": "wrangler dev --local"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.4",
@@ -28,6 +31,7 @@
     "@expressive-code/plugin-line-numbers": "^0.41.2",
     "@fontsource-variable/jetbrains-mono": "^5.2.6",
     "@fontsource/roboto": "^5.2.6",
+    "@hono/zod-validator": "^0.7.0",
     "@iconify-json/fa6-brands": "^1.2.5",
     "@iconify-json/fa6-regular": "^1.2.3",
     "@iconify-json/fa6-solid": "^1.2.3",
@@ -39,6 +43,7 @@
     "astro-expressive-code": "^0.41.2",
     "astro-icon": "^1.1.5",
     "hastscript": "^9.0.1",
+    "hono": "^4.8.3",
     "katex": "^0.16.22",
     "markdown-it": "^14.1.0",
     "mdast-util-to-string": "^4.0.0",
@@ -61,7 +66,8 @@
     "svelte": "^5.34.7",
     "tailwindcss": "^3.4.17",
     "typescript": "^5.8.3",
-    "unist-util-visit": "^5.0.0"
+    "unist-util-visit": "^5.0.0",
+    "zod": "^3.25.67"
   },
   "devDependencies": {
     "@astrojs/ts-plugin": "^1.10.4",
