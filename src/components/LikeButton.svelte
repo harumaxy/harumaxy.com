@@ -21,10 +21,19 @@
   };
 
   const saveLikedRecently = () => {
-    sessionStorage.setItem(`likedRecently:${slug}`, "true");
+    const expireAt = Date.now() + 1000 * 30; // 30 seconds
+    sessionStorage.setItem(
+      `likedRecently:${slug}`,
+      JSON.stringify({ expireAt })
+    );
   };
   const loadLikedRecently = () => {
-    return sessionStorage.getItem(`likedRecently:${slug}`) === "true";
+    const expireAtStr = JSON.parse(
+      sessionStorage.getItem(`likedRecently:${slug}`) || "{}"
+    ).expireAt;
+    const expireAt = Number(expireAtStr);
+    if (Number.isNaN(expireAt)) return false;
+    return Date.now() < expireAt;
   };
 
   const like = async () => {
