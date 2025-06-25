@@ -40,19 +40,24 @@ interface LikesQueryParam {
 }
 
 async function countLikes(db: D1Database, { slug, userUuid }: LikesQueryParam) {
-	const likedByMeProm = db
-		.prepare("SELECT user_uuid FROM likes WHERE slug = ? AND user_uuid = ?")
-		.bind(slug, userUuid)
+	const result = await db
+		.prepare(
+			`SELECT
+        count(*) as count,
+        count(*) FILTER (WHERE user_uuid = ?) as likedByMe
+      FROM likes WHERE slug = ? GROUP BY slug`,
+		)
+		.bind(userUuid, slug)
 		.all()
-		.then((result) => result.results.length > 0);
-	const countProm = db
-		.prepare("SELECT count(*) as count FROM likes WHERE slug = ?")
-		.bind(slug)
-		.all()
-		.then((result) => (result.results[0].count as number) ?? 0);
-	const [likedByMe, count] = await Promise.all([likedByMeProm, countProm]);
+		.then((result) => {
+			console.log({ result });
+			return result.results[0] as { count: number; likedByMe: number };
+		});
 
-	return { count, likedByMe };
+	return {
+		count: result.count,
+		likedByMe: result.likedByMe > 0,
+	};
 }
 
 async function like(db: D1Database, { slug, userUuid }: LikesQueryParam) {
