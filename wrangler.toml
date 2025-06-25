@@ -3,3 +3,9 @@ compatibility_date = "2025-04-01"
 
 [assets]
 directory = "./dist/"
+
+
+[[d1_databases]]
+binding = "DB"
+database_name = "harumaxy-com-db"
+database_id = "19b51f64-fe94-41da-a1cf-03eb6535ee1a"
