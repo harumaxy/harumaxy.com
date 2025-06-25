@@ -2,30 +2,11 @@ import { zValidator } from "@hono/zod-validator";
 import { Hono } from "hono";
 import { z } from "zod";
 
-const pathValidator = zValidator(
-	"param",
-	z.object({
-		slug: z.string(),
-	}),
-);
+const pathValidator = zValidator("param", z.object({ slug: z.string() }));
+const queryValidator = zValidator("query", z.object({ userUuid: z.string() }));
+const bodyValidator = zValidator("json", z.object({ userUuid: z.string() }));
 
-const queryValidator = zValidator(
-	"query",
-	z.object({
-		userUuid: z.string(),
-	}),
-);
-
-const bodyValidator = zValidator(
-	"json",
-	z.object({
-		userUuid: z.string(),
-	}),
-);
-
-type Bindings = {
-	DB: D1Database;
-};
+type Bindings = { DB: D1Database };
 
 const likesApp = new Hono<{ Bindings: Bindings }>()
 	.get(":slug", pathValidator, queryValidator, async (c) => {
@@ -66,8 +47,13 @@ export async function countLikes(
 		.bind(userUuid, slug)
 		.all()
 		.then((result) => {
-			console.log({ result });
-			return result.results[0] as { count: number; likedByMe: number };
+			return (
+				(result.results[0] as { count: number; likedByMe: number }) ?? {
+					// NOTE: データ件数が0件のとき、カウント行が取得できないのでデフォルト値を返す
+					count: 0,
+					likedByMe: 0,
+				}
+			);
 		});
 
 	return {
@@ -97,9 +83,5 @@ async function unlike(db: D1Database, { slug, userUuid }: LikesQueryParam) {
 }
 
 const app = new Hono<{ Bindings: Bindings }>().route("/api/likes", likesApp);
-
-export default {
-	fetch: app.fetch,
-};
-
-export type AppType = typeof app;
+export default { fetch: app.fetch };
+export type ServerType = typeof app;
