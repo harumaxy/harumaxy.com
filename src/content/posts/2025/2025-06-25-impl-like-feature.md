@@ -8,6 +8,14 @@ draft: false
 lang: 'ja'
 ---
 
+## @astrojs/cloudflare アダプター
+
+最近は Workers でも静的アセット配信ができて、 Pages から移行が推奨されている。
+が、astro の cloudflare アダプターが Pages 前提なので、ちょっと工夫が必要
+
+https://cai.im/blog/migrate-astro-site-from-cloudflare-pages-to-workers/
+
+
 ## Astro Server Endpoint
 
 https://docs.astro.build/en/guides/endpoints/#server-endpoints-api-routes

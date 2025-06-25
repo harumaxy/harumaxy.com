@@ -1,5 +1,6 @@
 name = "harumaxy-com"
 compatibility_date = "2025-04-01"
+main = "src/workers/main.ts"
 
 [assets]
 directory = "./dist/"
