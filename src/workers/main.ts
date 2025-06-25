@@ -13,7 +13,7 @@ const likesApp = new Hono<{ Bindings: Bindings }>()
 		const { slug } = c.req.valid("param");
 		const { userUuid } = c.req.valid("query");
 		const likes = await countLikes(c.env.DB, { slug, userUuid });
-		c.header("Cache-Control", "public, max-age=1800, s-maxage=1800"); // 1 hour cache
+		c.header("Cache-Control", "public, max-age=1800, s-maxage=1800"); // 30分キャッシュする
 		return c.json(likes);
 	})
 	.post(":slug", pathValidator, bodyValidator, async (c) => {

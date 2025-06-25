@@ -79,6 +79,7 @@
     "@types/sanitize-html": "^2.16.0",
     "postcss-import": "^16.1.0",
     "postcss-nesting": "^13.0.2",
+    "rollup-plugin-visualizer": "^6.0.3",
     "wrangler": "^4.21.0"
   },
   "packageManager": "pnpm@9.14.4"
