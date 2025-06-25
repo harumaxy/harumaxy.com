@@ -8,23 +8,32 @@
   const client = hc<ServerType>(window.location.origin);
   let userUuid = $state<string | null>(null);
   const { slug } = $props<{ slug: string }>();
+  let likeRecently = $state(false);
 
   let likes = $state<Likes | null>(null);
 
   const fetchLikes = async () => {
     if (!userUuid) return null;
-    const res = await client.api.likes[":slug"].$get({
-      param: { slug },
-      query: { userUuid },
+    const res = await fetch(`/api/likes/${slug}`, {
+      method: "GET",
+      cache: likeRecently ? "no-cache" : "default",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ userUuid }),
     });
-    likes = await res.json();
+    likes = await (res.json() as Promise<Likes>);
   };
+
+  const saveLikeRecently = () => {
+    sessionStorage.setItem(`likeRecently:${slug}`, "true");
+  };
+
   const like = async () => {
     if (!userUuid) return;
     const res = await client.api.likes[":slug"].$post({
       param: { slug },
       json: { userUuid },
     });
+    saveLikeRecently();
     likes = await res.json();
   };
 
@@ -34,6 +43,7 @@
       param: { slug },
       json: { userUuid },
     });
+    saveLikeRecently();
     likes = await res.json();
   };
 
@@ -53,19 +63,23 @@
       userUuid = crypto.randomUUID();
       localStorage.setItem("userId", userUuid);
     }
+
+    const storedLikeRecently = localStorage.getItem("likeRecently");
+    likeRecently = storedLikeRecently === "true";
+
     fetchLikes();
   });
 </script>
 
 <div
-  class="fixed z-50 bottom-16 right-16 bg-white dark:bg-gray-800 rounded-full shadow-lg border border-gray-200 dark:border-gray-700 p-3 min-w-[80px] text-center"
+  class="bg-white dark:bg-gray-800 rounded-full shadow-lg border border-gray-200 dark:border-gray-700 p-3 min-w-[60px] text-center"
 >
   <button
     class="flex items-center justify-center gap-2 w-full text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-red-500 dark:hover:text-red-400 transition-colors"
     onclick={handleClick}
   >
     <svg
-      class="w-8 h-8 {likes?.likedByMe
+      class="w-5 h-5 {likes?.likedByMe
         ? 'fill-red-500 text-red-500'
         : 'fill-none'}"
       stroke="currentColor"
