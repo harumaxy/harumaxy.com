@@ -56,10 +56,10 @@ image: ''
 tags: []
 category: ''
 draft: false 
-lang: ''
+lang: 'ja'
 ---
 `
 
-fs.writeFileSync(path.join(targetDir, thisYear, `${today}.${fileName}`), content)
+fs.writeFileSync(path.join(targetDir, thisYear, `${today}-${fileName}`), content)
 
 console.log(`Post ${fullPath} created`)
