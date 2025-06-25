@@ -3,14 +3,15 @@
 import fs from "fs";
 import path from "path";
 
-function getDate() {
-	const today = new Date();
-	const year = today.getFullYear();
-	const month = String(today.getMonth() + 1).padStart(2, "0");
-	const day = String(today.getDate()).padStart(2, "0");
+function toJSTISOString(date = new Date()) {
+	// UTC時刻に9時間加算して日本時間にする
+	const jstDate = new Date(date.getTime() + 9 * 60 * 60 * 1000);
 
-	return `${year}-${month}-${day}`;
+	// toISOString()でISO形式を取得し、末尾のZを+09:00に置換
+	return jstDate.toISOString().replace("Z", "+09:00");
 }
+
+const now = toJSTISOString(new Date()).replace(/\.\d+/, "");
 
 const args = process.argv.slice(2);
 
@@ -42,15 +43,14 @@ if (!fs.existsSync(dirPath)) {
 	fs.mkdirSync(dirPath, { recursive: true });
 }
 
-const today = getDate();
-const thisYear = today.split("-")[0];
+const thisYear = now.split("-")[0];
 if (!thisYear) {
 	throw new Error("Failed to get the current year");
 }
 
 const content = `---
 title: ${args[0]}
-published: ${today}
+published: ${now}
 description: ''
 image: ''
 tags: []
@@ -60,9 +60,6 @@ lang: 'ja'
 ---
 `;
 
-fs.writeFileSync(
-	path.join(targetDir, thisYear, `${today}-${fileName}`),
-	content,
-);
+fs.writeFileSync(path.join(targetDir, thisYear, `${now}-${fileName}`), content);
 
 console.log(`Post ${fullPath} created`);
