@@ -20,8 +20,11 @@
     likes = await (res.json() as Promise<Likes>);
   };
 
-  const saveLikeRecently = () => {
-    sessionStorage.setItem(`likeRecently:${slug}`, "true");
+  const saveLikedRecently = () => {
+    sessionStorage.setItem(`likedRecently:${slug}`, "true");
+  };
+  const loadLikedRecently = () => {
+    return sessionStorage.getItem(`likedRecently:${slug}`) === "true";
   };
 
   const like = async () => {
@@ -30,7 +33,7 @@
       param: { slug },
       json: { userUuid },
     });
-    saveLikeRecently();
+    saveLikedRecently();
     likes = await res.json();
   };
 
@@ -40,7 +43,7 @@
       param: { slug },
       json: { userUuid },
     });
-    saveLikeRecently();
+    saveLikedRecently();
     likes = await res.json();
   };
 
@@ -61,8 +64,7 @@
       localStorage.setItem("userId", userUuid);
     }
 
-    const likedRecently = localStorage.getItem("likeRecently") === "true";
-    fetchLikes(likedRecently);
+    fetchLikes(loadLikedRecently());
   });
 </script>
 
