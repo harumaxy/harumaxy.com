@@ -14,11 +14,10 @@
 
   const fetchLikes = async () => {
     if (!userUuid) return null;
-    const res = await fetch(`/api/likes/${slug}`, {
+    const res = await fetch(`/api/likes/${slug}?userUuid=${userUuid}`, {
       method: "GET",
       cache: likeRecently ? "no-cache" : "default",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ userUuid }),
     });
     likes = await (res.json() as Promise<Likes>);
   };
