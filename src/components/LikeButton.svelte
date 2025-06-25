@@ -8,15 +8,13 @@
   const client = hc<ServerType>(window.location.origin);
   let userUuid = $state<string | null>(null);
   const { slug } = $props<{ slug: string }>();
-  let likeRecently = $state(false);
-
   let likes = $state<Likes | null>(null);
 
-  const fetchLikes = async () => {
+  const fetchLikes = async (likedRecently: boolean) => {
     if (!userUuid) return null;
     const res = await fetch(`/api/likes/${slug}?userUuid=${userUuid}`, {
       method: "GET",
-      cache: likeRecently ? "no-cache" : "default",
+      cache: likedRecently ? "reload" : "default",
       headers: { "Content-Type": "application/json" },
     });
     likes = await (res.json() as Promise<Likes>);
@@ -63,10 +61,8 @@
       localStorage.setItem("userId", userUuid);
     }
 
-    const storedLikeRecently = localStorage.getItem("likeRecently");
-    likeRecently = storedLikeRecently === "true";
-
-    fetchLikes();
+    const likedRecently = localStorage.getItem("likeRecently") === "true";
+    fetchLikes(likedRecently);
   });
 </script>
 
@@ -91,6 +87,6 @@
         d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 000-6.364 4.5 4.5 0 00-6.364 0L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
       />
     </svg>
-    {likes?.count || 0}
+    {likes?.count ?? ""}
   </button>
 </div>
